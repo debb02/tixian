@@ -34,8 +34,8 @@
           <label class="field field--wide"><span>付款人名称</span><input name="payerName" value="CHUNG W** Y**"></label>
           <label class="field"><span>交易类型</span><input name="transactionType" value="提现"></label>
           <label class="field"><span>交易状态</span><select name="transactionStatus"><option>成功</option><option>处理中</option><option>失败</option></select></label>
-          <label class="field field--wide"><span>提现时间</span><input name="withdrawalTime" type="datetime-local"></label>
-          <label class="field field--wide"><span>到账时间</span><input name="arrivalTime" type="datetime-local"></label>
+          <label class="field field--wide"><span>提现时间</span><input name="withdrawalTime" type="datetime-local" step="1"></label>
+          <label class="field field--wide"><span>到账时间</span><input name="arrivalTime" type="datetime-local" step="1"></label>
           <label class="field field--wide"><span>交易编号</span><input name="transactionId"></label>
           <label class="field field--wide"><span>FPS 参考编号</span><input name="fpsReference"></label>
           <label class="field field--wide"><span>B 页到账文案</span><input name="arrivalMessage"></label>
@@ -59,10 +59,11 @@
         </label>
         <div class="field-grid field-grid--status">
           <label class="field"><span>状态栏时间</span><input name="statusTime" type="time"></label>
-          <label class="field"><span>网络</span><select name="carrier"><option>5G</option><option>4G</option><option>LTE</option><option>3G</option></select></label>
+          <label class="field"><span>网络文字</span><select name="carrier"><option value="">不显示</option><option>5G</option><option>4G</option><option>LTE</option><option>3G</option></select></label>
           <label class="field field--wide range-field"><span>电量 <output id="batteryOutput">72%</output></span><input name="battery" type="range" min="1" max="100" value="72"></label>
           <label class="field field--wide range-field"><span>信号强度 <output id="signalOutput">4/4</output></span><input name="signal" type="range" min="1" max="4" value="4"></label>
           <label class="switch-row field--wide"><span><b>显示 Wi-Fi</b><small>同时同步到 B 页状态栏</small></span><input name="wifi" type="checkbox"><i></i></label>
+          <label class="switch-row field--wide"><span><b>充电中</b><small>开启后电池使用绿色充电样式</small></span><input name="charging" type="checkbox"><i></i></label>
         </div>
       </section>
 
@@ -79,10 +80,16 @@
               <div class="phone-screen phone-screen--dark">
                 <div id="aStatusBar"></div>
                 <div class="demo-watermark">演示 · 非真实交易凭证</div>
-                <div class="app-header"><button aria-label="返回">‹</button><span>交易记录</span><i></i></div>
+                <div class="app-header"><button aria-label="返回">‹</button><span>交易中心</span><i></i></div>
                 <div class="tab-grid" aria-hidden="true"><span>存款</span><span class="active">提款</span><span>投注</span><span>转账</span><span>优惠</span><span>返利</span></div>
+                <div class="history-table" aria-hidden="true">
+                  <div><span>2026-08-17<br>15:10:45</span><b>成功</b><span>10000</span><a>明细</a></div>
+                  <div><span>2026-02-06<br>19:37:30</span><b>成功</b><span>9000</span><a>明细</a></div>
+                </div>
+                <div class="history-pagination" aria-hidden="true"><span>上一页</span><b>1</b><span>下一页</span></div>
                 <div class="backdrop"></div>
                 <section class="detail-sheet">
+                  <button class="sheet-close" type="button" aria-label="关闭明细">×</button>
                   <div class="sheet-title">明细</div>
                   <div class="amount amount--green" id="aAmount">+2000.00</div>
                   <dl>
@@ -92,6 +99,12 @@
                     <div><dt>交易时间</dt><dd id="aTime">2026-08-17 15:13:00</dd></div>
                   </dl>
                 </section>
+                <button class="support-bubble" type="button" aria-label="在线客服"><i></i></button>
+                <div class="browser-toolbar" aria-label="浏览器工具栏">
+                  <div class="browser-nav"><span>‹</span><span>›</span></div>
+                  <div class="browser-address"><i></i><b>demo.local</b><span>↻</span></div>
+                  <div class="browser-more">•••</div>
+                </div>
                 <div class="phone-home-indicator"></div>
               </div>
             </div>
@@ -105,7 +118,7 @@
               <div class="phone-screen phone-screen--light">
                 <div id="bStatusBar"></div>
                 <div class="demo-watermark demo-watermark--light">演示 · 非真实交易凭证</div>
-                <div class="app-header"><button aria-label="返回">‹</button><span>交易记录</span><i></i></div>
+                <div class="app-header"><button aria-label="返回">‹</button><span>交易中心</span><i></i></div>
                 <article class="receipt">
                   <div class="fictional-mark">T</div>
                   <p class="receipt-kicker" id="bMessage">转数快收款</p>
@@ -121,6 +134,12 @@
                   </dl>
                   <div class="receipt-disclaimer"><b>DEMO</b><span>此页面仅用于界面原型演示，不代表任何真实转账或到账。</span></div>
                 </article>
+                <button class="support-bubble" type="button" aria-label="在线客服"><i></i></button>
+                <div class="browser-toolbar" aria-label="浏览器工具栏">
+                  <div class="browser-nav"><span>‹</span><span>›</span></div>
+                  <div class="browser-address"><i></i><b>demo.local</b><span>↻</span></div>
+                  <div class="browser-more">•••</div>
+                </div>
                 <div class="phone-home-indicator phone-home-indicator--dark"></div>
               </div>
             </div>

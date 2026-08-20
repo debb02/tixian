@@ -1,24 +1,25 @@
-const STORAGE_KEY = "tixian-demo-config-v1";
+const STORAGE_KEY = "tixian-demo-config-v2";
 
 const DEFAULT_CONFIG = Object.freeze({
-  amount: "2000.00",
+  amount: "10000",
   currency: "HK$",
-  payoutAccount: "950***351",
+  payoutAccount: "701***202",
   payerName: "CHUNG W** Y**",
-  transactionType: "提现",
+  transactionType: "提款",
   transactionStatus: "成功",
-  withdrawalTime: "2026-08-17T15:13",
-  arrivalTime: "2026-08-17T15:14",
+  withdrawalTime: "2026-08-17T15:10:45",
+  arrivalTime: "2026-08-17T15:10:45",
   transactionId: "1040073000012801202405195540487215",
   fpsReference: "FRN20241010PAYC694364383164",
   arrivalMessage: "转数快收款",
   balanceLabel: "已存入余额",
   device: "iphone",
-  statusTime: "15:14",
-  battery: 72,
+  statusTime: "09:55",
+  battery: 40,
+  charging: true,
   signal: 4,
   wifi: true,
-  carrier: "5G"
+  carrier: ""
 });
 
 const DEVICE_LABELS = Object.freeze({
@@ -76,13 +77,13 @@ function renderStatusBar(root, config) {
     <div class="status-cutout" aria-hidden="true"><i></i></div>
     <div class="status-right">
       <span class="status-mode" aria-hidden="true"></span>
-      <span class="carrier">${escapeHtml(config.carrier || "5G")}</span>
+      <span class="carrier">${escapeHtml(config.carrier ?? "5G")}</span>
       ${config.wifi ? '<span class="wifi" aria-label="Wi-Fi"><i></i></span>' : ""}
       <span class="signal" aria-label="signal">
         ${[1, 2, 3, 4].map(level => `<i class="${level <= signal ? "on" : ""}"></i>`).join("")}
       </span>
-      <span class="battery ${battery <= 20 ? "battery--low" : ""}" aria-label="${battery}% battery">
-        <i style="width:${battery}%"></i><b>${battery}</b>
+      <span class="battery ${battery <= 20 ? "battery--low" : ""} ${config.charging ? "battery--charging" : ""}" aria-label="${battery}% battery">
+        <i style="width:${battery}%"></i><b>${battery}</b>${config.charging ? '<em aria-label="charging">ϟ</em>' : ""}
       </span>
     </div>`;
 }

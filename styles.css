@@ -15,8 +15,8 @@
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; background: var(--paper); }
-body { margin: 0; color: var(--ink); background: var(--paper); }
+html { min-height: 100%; overflow-x: hidden; background: var(--paper); }
+body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -88,16 +88,16 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .preview-card-title h3 { margin: 0; font-size: 14px; }
 .phone-stage { display: grid; place-items: center; }
 .dual-preview-grid .phone-shell { width: min(350px, 100%); }
-.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 790; padding: 9px; border-radius: 44px; background: #0c0f12; box-shadow: var(--shadow), inset 0 0 0 1px #32363b; }
-.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 36px; }
-.phone-screen--dark { color: #f5f5fb; background: #080a10; }
+.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 6px; border-radius: 34px; background: #0c0f12; box-shadow: var(--shadow), inset 0 0 0 1px #32363b; }
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 28px; }
+.phone-screen--dark { color: #f5f5fb; background: #030408; }
 .phone-screen--light { color: #171b19; background: #f7f7f5; }
 .phone-shell[data-device="samsung"], .phone-shell[data-device="xiaomi"], .phone-shell[data-device="vivo"] { border-radius: 30px; }
 .phone-shell[data-device="samsung"] .phone-screen, .phone-shell[data-device="xiaomi"] .phone-screen, .phone-shell[data-device="vivo"] .phone-screen { border-radius: 22px; }
 .phone-shell[data-device="pixel"] { border-radius: 34px; background: #24272c; }
 
-.status-bar { position: relative; z-index: 8; height: 42px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; gap: 9px; font-size: 13px; font-weight: 800; letter-spacing: -.02em; }
-.status-left, .status-right { position: relative; z-index: 2; display: flex; align-items: center; gap: 6px; min-width: 92px; }
+.status-bar { position: relative; z-index: 8; height: 54px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #fff; background: #171a2b; font-size: 17px; font-weight: 800; letter-spacing: -.03em; }
+.status-left, .status-right { position: relative; z-index: 2; display: flex; align-items: center; gap: 7px; min-width: 118px; }
 .status-right { justify-content: flex-end; }
 .status-notifications { display: inline-flex; align-items: center; gap: 3px; opacity: .9; }
 .status-notifications i { width: 3px; height: 3px; display: block; border-radius: 50%; background: currentColor; }
@@ -110,9 +110,9 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--vivo .status-notifications i:first-child { width: 6px; height: 5px; border-radius: 1px; }
 .status-bar--vivo .status-mode { display: inline-block; }
 .status-bar--vivo .status-mode::before { content: "HD"; font-size: 7px; letter-spacing: -.05em; }
-.status-cutout { position: absolute; z-index: 1; left: 50%; top: 10px; width: 9px; height: 9px; transform: translateX(-50%); border-radius: 50%; background: #030405; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.16); }
+.status-cutout { display: none; position: absolute; z-index: 1; left: 50%; top: 20px; width: 9px; height: 9px; transform: translateX(-50%); border-radius: 50%; background: #030405; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.16); }
 .status-cutout i { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; transform: translate(-50%, -50%); border-radius: 50%; background: #132436; box-shadow: inset 0 0 1px #4f7197; }
-.status-bar--iphone .status-cutout { top: 8px; width: 76px; height: 22px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.status-bar--iphone .status-cutout { top: 15px; width: 76px; height: 22px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
 .status-bar--iphone .status-cutout i { left: auto; right: 8px; width: 6px; height: 6px; transform: translateY(-50%); }
 .status-bar--xiaomi .status-cutout { left: 64px; }
 .status-bar--vivo .status-cutout { left: 67px; width: 8px; height: 8px; }
@@ -121,59 +121,84 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--xiaomi .status-left, .status-bar--vivo .status-left { padding-left: 13px; }
 .status-bar--iphone .carrier { display: none; }
 .status-bar--iphone .status-right { gap: 7px; }
+.status-bar--iphone .signal { order: 1; }
+.status-bar--iphone .wifi { order: 2; }
+.status-bar--iphone .battery { order: 3; }
 .status-bar--samsung .status-right { gap: 5px; }
 .status-bar--xiaomi .status-right { gap: 3px; }
 .status-bar--pixel .status-right { gap: 5px; }
 .status-bar--vivo .status-right { gap: 3px; }
-.signal { height: 12px; display: inline-flex; align-items: flex-end; gap: 1.5px; }
-.signal i { width: 2.5px; height: 4px; display: block; border-radius: 1px; background: currentColor; opacity: .24; }
-.signal i:nth-child(2) { height: 6px; }.signal i:nth-child(3) { height: 8px; }.signal i:nth-child(4) { height: 10px; }.signal i.on { opacity: 1; }
-.wifi { position: relative; width: 15px; height: 11px; display: block; overflow: hidden; }
-.wifi::before, .wifi::after { content: ""; position: absolute; left: 50%; top: 1px; width: 14px; height: 10px; transform: translateX(-50%); border: 2px solid currentColor; border-color: currentColor transparent transparent; border-radius: 50%; }
-.wifi::after { top: 5px; width: 7px; height: 5px; }
-.wifi i { position: absolute; z-index: 2; left: 6px; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
-.battery { position: relative; width: 24px; height: 12px; padding: 1px; display: block; border: 1.2px solid currentColor; border-radius: 3px; }
-.battery::after { content: ""; position: absolute; right: -3px; top: 3px; width: 2px; height: 5px; border-radius: 0 2px 2px 0; background: currentColor; }
+.signal { height: 17px; display: inline-flex; align-items: flex-end; gap: 2px; }
+.signal i { width: 3px; height: 6px; display: block; border-radius: 1px; background: currentColor; opacity: .24; }
+.signal i:nth-child(2) { height: 9px; }.signal i:nth-child(3) { height: 12px; }.signal i:nth-child(4) { height: 16px; }.signal i.on { opacity: 1; }
+.wifi { position: relative; width: 21px; height: 16px; display: block; overflow: hidden; }
+.wifi::before, .wifi::after { content: ""; position: absolute; left: 50%; top: 1px; width: 20px; height: 14px; transform: translateX(-50%); border: 2.5px solid currentColor; border-color: currentColor transparent transparent; border-radius: 50%; }
+.wifi::after { top: 7px; width: 10px; height: 7px; }
+.wifi i { position: absolute; z-index: 2; left: 9px; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+.battery { position: relative; width: 30px; height: 16px; padding: 1px; display: block; border: 1.4px solid currentColor; border-radius: 4px; }
+.battery::after { content: ""; position: absolute; right: -4px; top: 4px; width: 3px; height: 7px; border-radius: 0 2px 2px 0; background: currentColor; }
 .battery i { height: 100%; display: block; border-radius: 1px; background: currentColor; opacity: .9; }
-.battery b { position: absolute; inset: 0; display: grid; place-items: center; color: #0a0c0b; font-size: 6px; font-weight: 900; line-height: 1; }
+.battery b { position: absolute; inset: 0; display: grid; place-items: center; color: #0a0c0b; font-size: 9px; font-weight: 900; line-height: 1; }
+.battery em { position: absolute; right: -9px; top: -3px; color: #fff; font-size: 10px; font-style: normal; text-shadow: 0 1px 2px #000; }
 .phone-screen--light .battery b { color: #fff; mix-blend-mode: difference; }
 .battery--low i { background: #ff505f; }
-.status-bar--iphone .battery { width: 27px; height: 13px; border-radius: 4px; }
-.status-bar--iphone .battery::after { top: 3px; height: 5px; }
-.status-bar--samsung .battery { width: 24px; border-radius: 2px; }
-.status-bar--xiaomi .battery { width: 29px; border-radius: 2px; }
-.status-bar--pixel .battery { width: 22px; border-radius: 3px; }
-.status-bar--vivo .battery { width: 26px; border-radius: 5px; }
+.battery--charging { border-color: #56d873; background: #56d873; }
+.battery--charging i { background: #56d873; }
+.battery--charging b { color: #fff; }
+.status-bar--iphone .battery { width: 32px; height: 17px; border-radius: 5px; }
+.status-bar--iphone .battery::after { top: 4px; height: 7px; }
+.status-bar--samsung .battery { width: 30px; border-radius: 3px; }
+.status-bar--xiaomi .battery { width: 34px; border-radius: 3px; }
+.status-bar--pixel .battery { width: 28px; border-radius: 4px; }
+.status-bar--vivo .battery { width: 32px; border-radius: 6px; }
 
-.demo-watermark { position: absolute; z-index: 20; left: 50%; top: 54%; width: 155%; padding: 10px 0; transform: translate(-50%, -50%) rotate(-24deg); border: 2px solid rgba(255, 255, 255, .28); color: rgba(255, 255, 255, .36); font-size: 20px; font-weight: 900; letter-spacing: .12em; text-align: center; pointer-events: none; }
+.demo-watermark { position: absolute; z-index: 20; left: 50%; top: 50%; width: 150%; padding: 8px 0; transform: translate(-50%, -50%) rotate(-28deg); color: rgba(255, 255, 255, .34); font-size: 17px; font-weight: 900; letter-spacing: .08em; text-align: center; pointer-events: none; }
 .demo-watermark--light { border-color: rgba(184, 31, 50, .18); color: rgba(184, 31, 50, .24); }
-.app-header { position: relative; z-index: 4; height: 54px; display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; text-align: center; color: #d9dbea; background: #0b0d14; }
-.app-header button { border: 0; color: #9da2b8; background: none; font-size: 28px; }
-.tab-grid { position: relative; z-index: 2; padding: 16px 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.tab-grid span { height: 46px; display: grid; place-items: center; border-radius: 7px; color: #b9bdd0; background: #171a29; font-size: 13px; }
-.tab-grid span.active { color: #bfcaff; background: #202949; }
-.backdrop { position: absolute; z-index: 3; inset: 34px 0 0; background: rgba(0, 0, 0, .72); }
-.detail-sheet { position: absolute; z-index: 5; left: 18px; right: 18px; top: 272px; padding-bottom: 30px; background: var(--navy); box-shadow: 0 18px 50px #000; }
-.sheet-title { height: 58px; display: grid; place-items: center; background: var(--navy-2); font-size: 19px; }
-.amount { padding: 28px 20px 25px; text-align: center; font-size: 38px; font-weight: 520; letter-spacing: -.03em; }
-.amount--green { color: #1dbf75; }
-.detail-sheet dl { margin: 0; padding: 0 22px; display: grid; gap: 20px; }
+.app-header { position: relative; z-index: 4; height: 64px; display: grid; grid-template-columns: 58px 1fr 58px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.03); text-align: center; color: #626572; background: #05060a; font-size: 18px; }
+.app-header button { border: 0; color: #5c606c; background: none; font-size: 30px; }
+.tab-grid { position: relative; z-index: 2; padding: 22px 16px 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tab-grid span { height: 48px; display: grid; place-items: center; border-radius: 4px; color: #9ea3b3; background: #12141e; font-size: 15px; }
+.tab-grid span.active { color: #afb8d4; background: #1d2948; }
+.history-table { position: relative; z-index: 1; margin: 12px 14px 0; border: 1px solid #11131d; color: #707584; font-size: 11px; }
+.history-table > div { min-height: 66px; padding: 8px; display: grid; grid-template-columns: 1.2fr .8fr .8fr .7fr; align-items: center; border-bottom: 1px solid #11131d; text-align: center; }
+.history-table b { color: #0a8b58; }.history-table a { color: #4b6da8; }
+.history-pagination { position: relative; z-index: 1; padding: 20px 50px; display: flex; align-items: center; justify-content: space-between; color: #727686; }
+.history-pagination b { color: #34518a; }
+.backdrop { position: absolute; z-index: 3; inset: 54px 0 82px; background: rgba(0, 0, 0, .76); }
+.detail-sheet { position: absolute; z-index: 5; left: 18px; right: 18px; top: 220px; padding-bottom: 26px; border-radius: 2px; background: #191d31; box-shadow: 0 18px 50px #000; }
+.sheet-close { position: absolute; z-index: 3; right: -13px; top: -18px; width: 42px; height: 42px; display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; color: #fff; background: #171a2b; font-size: 30px; font-weight: 700; line-height: 1; }
+.sheet-title { height: 54px; display: grid; place-items: center; background: #272d4b; font-size: 19px; }
+.amount { padding: 27px 20px 24px; text-align: center; font-size: 38px; font-weight: 520; letter-spacing: -.03em; }
+.amount--green { color: #00a959; }
+.detail-sheet dl { margin: 0; padding: 0 22px; display: grid; gap: 18px; }
 .detail-sheet dl div { display: grid; grid-template-columns: 1fr 1.35fr; gap: 15px; }
 .detail-sheet dt { color: #adb2c8; }
 .detail-sheet dd { margin: 0; color: #bfc3d6; text-align: right; overflow-wrap: anywhere; }
 .success { color: #0aa96b !important; }
-.phone-home-indicator { position: absolute; z-index: 12; left: 50%; bottom: 7px; width: 112px; height: 4px; transform: translateX(-50%); border-radius: 99px; background: rgba(255,255,255,.9); }
+.support-bubble { position: absolute; z-index: 7; right: 18px; bottom: 104px; width: 54px; height: 54px; display: grid; place-items: center; border: 0; border-radius: 50%; background: linear-gradient(145deg, #6d4cff, #2516d9); box-shadow: 0 8px 24px rgba(41, 28, 219, .45); }
+.support-bubble i { position: relative; width: 24px; height: 18px; display: block; border: 3px solid #fff; border-radius: 50%; }
+.support-bubble i::after { content: ""; position: absolute; left: -7px; right: -7px; bottom: -9px; height: 10px; border: 3px solid #fff; border-top: 0; border-radius: 0 0 12px 12px; }
+.browser-toolbar { position: absolute; z-index: 14; left: 22px; right: 22px; bottom: 20px; height: 58px; display: grid; grid-template-columns: 82px 1fr 52px; gap: 8px; color: #fff; font-size: 15px; }
+.browser-nav, .browser-address, .browser-more { display: flex; align-items: center; justify-content: space-around; border: 1px solid rgba(255,255,255,.13); border-radius: 28px; background: rgba(38, 38, 44, .96); box-shadow: inset 0 1px rgba(255,255,255,.06); }
+.browser-nav span { font-size: 34px; font-weight: 250; line-height: 1; }
+.browser-nav span:last-child { color: #87878b; }
+.browser-address { padding: 0 13px; gap: 9px; }
+.browser-address i { width: 17px; height: 13px; display: block; border: 2px solid #fff; border-radius: 3px; box-shadow: 0 5px 0 -3px #fff; }
+.browser-address b { flex: 1; overflow: hidden; white-space: nowrap; text-align: center; text-overflow: ellipsis; }
+.browser-address span { font-size: 26px; }
+.browser-more { letter-spacing: 2px; }
+.phone-home-indicator { position: absolute; z-index: 15; left: 50%; bottom: 5px; width: 112px; height: 4px; transform: translateX(-50%); border-radius: 99px; background: rgba(255,255,255,.9); }
 .phone-home-indicator--dark { background: #161a18; }
 .preview-note { max-width: 390px; margin: 16px auto 0; color: var(--muted); font-size: 11px; text-align: center; }
 
 .arrival-page { min-height: 100vh; background: radial-gradient(circle at 50% 15%, #fff 0, #edf0ea 43%, #dfe4dd 100%); }
 .arrival-toolbar { position: relative; background: rgba(250, 250, 247, .86); }
 .arrival-stage { padding: 40px 20px 65px; display: grid; justify-items: center; }
-.phone-shell--arrival { width: min(410px, calc(100vw - 32px)); aspect-ratio: 410 / 840; background: #111514; }
+.phone-shell--arrival { width: min(410px, calc(100vw - 32px)); aspect-ratio: 390 / 844; background: #111514; }
 .receipt-nav { height: 52px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; color: white; background: #111412; }
 .receipt-nav button { border: 0; color: inherit; background: none; font-size: 28px; font-weight: 280; }
 .receipt-nav span { letter-spacing: 2px; }
-.preview-card #bStatusBar { color: #f5f5fb; background: #080a10; }
+.preview-card #bStatusBar { color: #f5f5fb; background: #171a2b; }
 .receipt { padding: 35px 30px 30px; text-align: center; }
 .fictional-mark { width: 58px; height: 58px; margin: 0 auto 22px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: linear-gradient(135deg, #18a070, #087657); box-shadow: 0 10px 28px rgba(11, 138, 91, .25); font: 800 24px Georgia, serif; }
 .receipt-kicker { margin: 0; font-size: 15px; font-weight: 750; }

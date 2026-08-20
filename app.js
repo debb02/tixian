@@ -26,7 +26,7 @@
   }
 
   function render() {
-    document.querySelector("#aAmount").textContent = `+${formatMoney(config.amount)}`;
+    document.querySelector("#aAmount").textContent = `+${String(config.amount).replaceAll(",", "") || "0"}`;
     document.querySelector("#aAccount").textContent = config.payoutAccount;
     document.querySelector("#aType").textContent = config.transactionType;
     document.querySelector("#aStatus").textContent = config.transactionStatus;
