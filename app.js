@@ -34,7 +34,18 @@
     document.querySelector("#batteryOutput").textContent = `${config.battery}%`;
     document.querySelector("#signalOutput").textContent = `${config.signal}/4`;
     document.querySelector("#withdrawalPhone").dataset.device = config.device;
+    document.querySelector("#arrivalPhone").dataset.device = config.device;
     renderStatusBar(document.querySelector("#aStatusBar"), config);
+    renderStatusBar(document.querySelector("#bStatusBar"), config);
+    document.querySelector("#bMessage").textContent = config.arrivalMessage;
+    document.querySelector("#bPayer").textContent = config.payerName;
+    document.querySelector("#bCurrency").textContent = config.currency;
+    document.querySelector("#bAmount").textContent = formatMoney(config.amount);
+    document.querySelector("#bBalance").textContent = config.balanceLabel;
+    document.querySelector("#bAccount").textContent = config.payoutAccount;
+    document.querySelector("#bTime").textContent = formatDateTime(config.arrivalTime);
+    document.querySelector("#bTransaction").textContent = config.transactionId;
+    document.querySelector("#bReference").textContent = config.fpsReference;
   }
 
   function persist() {
@@ -66,10 +77,10 @@
     saveState.textContent = "已恢复默认设置";
   });
 
-  document.querySelector("#openArrivalButton").addEventListener("click", () => {
+  document.querySelector("#focusPreviewButton").addEventListener("click", () => {
     config = readForm();
     saveConfig(config);
-    window.open("arrival.html", "_blank", "noopener");
+    document.querySelector("#previews").scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   populate();

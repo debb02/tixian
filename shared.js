@@ -64,13 +64,18 @@ function renderStatusBar(root, config) {
   const device = config.device || "iphone";
   const battery = clamp(config.battery, 1, 100);
   const signal = clamp(config.signal, 1, 4);
+  const notificationIcons = device === "iphone"
+    ? ""
+    : '<span class="status-notifications" aria-hidden="true"><i></i><i></i></span>';
   root.className = `status-bar status-bar--${device}`;
   root.innerHTML = `
     <div class="status-left">
       <span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>
+      ${notificationIcons}
     </div>
     <div class="status-cutout" aria-hidden="true"><i></i></div>
     <div class="status-right">
+      <span class="status-mode" aria-hidden="true"></span>
       <span class="carrier">${escapeHtml(config.carrier || "5G")}</span>
       ${config.wifi ? '<span class="wifi" aria-label="Wi-Fi"><i></i></span>' : ""}
       <span class="signal" aria-label="signal">
