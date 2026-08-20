@@ -104,10 +104,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-notifications i:last-child { width: 5px; height: 5px; border-radius: 1px; opacity: .72; }
 .status-mode { display: none; color: currentColor; font-size: 8px; font-weight: 900; }
 .status-bar--samsung .status-mode { display: inline-block; width: 9px; height: 9px; border: 1.5px solid currentColor; border-left-color: transparent; border-radius: 50%; transform: rotate(-32deg); }
-.status-bar--xiaomi .status-mode { display: inline-block; }
-.status-bar--xiaomi .status-mode::before { content: "⇅"; font-size: 8px; }
+.status-bar--xiaomi .status-mode { display: inline-block; min-width: 27px; }
+.status-bar--xiaomi .status-mode::before { content: "0.0K/s"; font-size: 6px; letter-spacing: -.04em; }
 .status-bar--pixel .status-notifications i:last-child { width: 3px; height: 3px; border-radius: 50%; }
 .status-bar--vivo .status-notifications i:first-child { width: 6px; height: 5px; border-radius: 1px; }
+.status-bar--vivo .status-mode { display: inline-block; }
+.status-bar--vivo .status-mode::before { content: "HD"; font-size: 7px; letter-spacing: -.05em; }
 .status-cutout { position: absolute; z-index: 1; left: 50%; top: 10px; width: 9px; height: 9px; transform: translateX(-50%); border-radius: 50%; background: #030405; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.16); }
 .status-cutout i { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; transform: translate(-50%, -50%); border-radius: 50%; background: #132436; box-shadow: inset 0 0 1px #4f7197; }
 .status-bar--iphone .status-cutout { top: 8px; width: 76px; height: 22px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
@@ -120,9 +122,9 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--iphone .carrier { display: none; }
 .status-bar--iphone .status-right { gap: 7px; }
 .status-bar--samsung .status-right { gap: 5px; }
-.status-bar--xiaomi .status-right { gap: 4px; }
+.status-bar--xiaomi .status-right { gap: 3px; }
 .status-bar--pixel .status-right { gap: 5px; }
-.status-bar--vivo .status-right { gap: 4px; }
+.status-bar--vivo .status-right { gap: 3px; }
 .signal { height: 12px; display: inline-flex; align-items: flex-end; gap: 1.5px; }
 .signal i { width: 2.5px; height: 4px; display: block; border-radius: 1px; background: currentColor; opacity: .24; }
 .signal i:nth-child(2) { height: 6px; }.signal i:nth-child(3) { height: 8px; }.signal i:nth-child(4) { height: 10px; }.signal i.on { opacity: 1; }
@@ -145,7 +147,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 
 .demo-watermark { position: absolute; z-index: 20; left: 50%; top: 54%; width: 155%; padding: 10px 0; transform: translate(-50%, -50%) rotate(-24deg); border: 2px solid rgba(255, 255, 255, .28); color: rgba(255, 255, 255, .36); font-size: 20px; font-weight: 900; letter-spacing: .12em; text-align: center; pointer-events: none; }
 .demo-watermark--light { border-color: rgba(184, 31, 50, .18); color: rgba(184, 31, 50, .24); }
-.app-header { position: relative; z-index: 2; height: 54px; display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; text-align: center; color: #d9dbea; background: #0b0d14; }
+.app-header { position: relative; z-index: 4; height: 54px; display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; text-align: center; color: #d9dbea; background: #0b0d14; }
 .app-header button { border: 0; color: #9da2b8; background: none; font-size: 28px; }
 .tab-grid { position: relative; z-index: 2; padding: 16px 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .tab-grid span { height: 46px; display: grid; place-items: center; border-radius: 7px; color: #b9bdd0; background: #171a29; font-size: 13px; }
@@ -171,6 +173,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .receipt-nav { height: 52px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; color: white; background: #111412; }
 .receipt-nav button { border: 0; color: inherit; background: none; font-size: 28px; font-weight: 280; }
 .receipt-nav span { letter-spacing: 2px; }
+.preview-card #bStatusBar { color: #f5f5fb; background: #080a10; }
 .receipt { padding: 35px 30px 30px; text-align: center; }
 .fictional-mark { width: 58px; height: 58px; margin: 0 auto 22px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: linear-gradient(135deg, #18a070, #087657); box-shadow: 0 10px 28px rgba(11, 138, 91, .25); font: 800 24px Georgia, serif; }
 .receipt-kicker { margin: 0; font-size: 15px; font-weight: 750; }
