@@ -24,9 +24,18 @@
       <section class="control-section">
         <div class="section-heading">
           <span>01</span>
-          <div><h2>交易内容</h2><p>B 页将直接读取以下字段</p></div>
+          <div><h2>交易与到账模板</h2><p>A 页数据同步到所选的 A1–A5 到账样式</p></div>
         </div>
         <div class="field-grid">
+          <label class="field field--wide"><span>到账模板</span>
+            <select name="arrivalTemplate">
+              <option value="a1">A1 到账 · 转数快收款</option>
+              <option value="a2">A2 到账 · 收件箱通知</option>
+              <option value="a3">A3 到账 · 交易详情</option>
+              <option value="a4">A4 到账 · 账户流水</option>
+              <option value="a5">A5 到账 · 收款凭条</option>
+            </select>
+          </label>
           <label class="field"><span>币种</span><select name="currency"><option>HK$</option><option>¥</option><option>$</option><option>NT$</option></select></label>
           <label class="field field--wide"><span>金额</span><input name="amount" inputmode="decimal" value="2000.00"></label>
           <label class="field field--wide"><span>汇款账户</span><input name="payoutAccount" value="950***351"></label>
@@ -39,6 +48,13 @@
           <label class="field field--wide"><span>FPS 参考编号</span><input name="fpsReference"></label>
           <label class="field field--wide"><span>B 页到账文案</span><input name="arrivalMessage"></label>
           <label class="field field--wide"><span>B 页账户状态</span><input name="balanceLabel"></label>
+          <label class="field field--wide"><span>机构 / 银行名称</span><input name="institutionName"></label>
+          <label class="field field--wide"><span>收款人名称</span><input name="recipientName"></label>
+          <label class="field field--wide"><span>收款机构</span><input name="recipientBank"></label>
+          <label class="field field--wide"><span>到账账户</span><input name="destinationAccount"></label>
+          <label class="field"><span>交易摘要</span><input name="summaryLabel"></label>
+          <label class="field"><span>账户余额显示</span><input name="accountBalance"></label>
+          <label class="field field--wide"><span>备注 / 转账说明</span><input name="memo"></label>
         </div>
       </section>
 
@@ -70,7 +86,7 @@
     </form>
 
     <aside class="preview-panel" id="previews">
-      <div class="preview-heading"><div><span>LIVE PREVIEW</span><h2>A / B 同页双预览</h2></div><p>所有内容由左侧统一控制</p></div>
+      <div class="preview-heading"><div><span>LIVE PREVIEW</span><h2>A / B 同页双预览</h2></div><p id="activeTemplateLabel">B：A1 到账</p></div>
       <div class="dual-preview-grid">
         <section class="preview-card" aria-label="A 提现预览">
           <div class="phone-stage">
@@ -115,32 +131,26 @@
         </section>
 
         <section class="preview-card" aria-label="B 到账预览">
+          <div class="template-switcher" id="templateSwitcher" aria-label="切换到账模板">
+            <button type="button" data-template="a1">A1</button>
+            <button type="button" data-template="a2">A2</button>
+            <button type="button" data-template="a3">A3</button>
+            <button type="button" data-template="a4">A4</button>
+            <button type="button" data-template="a5">A5</button>
+          </div>
           <div class="phone-stage">
             <div class="phone-shell phone-shell--arrival" id="arrivalPhone">
               <div class="phone-screen phone-screen--light">
                 <div id="bStatusBar"></div>
-                <div class="demo-watermark demo-watermark--light">演示 · 非真实交易凭证</div>
-                <div class="receipt-nav"><button aria-label="关闭">×</button><span>•••</span></div>
-                <article class="receipt">
-                  <div class="receipt-mark"><span>Ⅲ</span></div>
-                  <p class="receipt-kicker"><span id="bMessage">轉數快收款</span>-來自 <strong id="bPayer">CHUNG W** Y**</strong></p>
-                  <h3>+<span id="bCurrency">HK$</span> <span id="bAmount">2,000.00</span></h3>
-                  <div class="receipt-rule"></div>
-                  <dl>
-                    <div><dt>当前状态</dt><dd class="success" id="bBalance">已存入余额</dd></div>
-                    <div><dt>付款账户</dt><dd id="bAccount">950***351</dd></div>
-                    <div><dt>收款时间</dt><dd id="bTime">2026-08-17 15:14</dd></div>
-                    <div><dt>交易单号</dt><dd class="breakable" id="bTransaction">1040073000012801202405195540487215</dd></div>
-                    <div><dt>FPS参考编号</dt><dd class="breakable" id="bReference">FRN20241010PAYC694364383164</dd></div>
-                  </dl>
-                </article>
+                <div id="arrivalView" class="arrival-view"></div>
+                <div class="demo-stamp">DEMO · 非真实交易</div>
                 <div class="phone-home-indicator phone-home-indicator--dark"></div>
               </div>
             </div>
           </div>
         </section>
       </div>
-      <p class="preview-note">设备外观是通用演示框架，不对应任何真实银行或支付产品。</p>
+      <p class="preview-note">A2–A5 仅参考文档截图的版式结构，预览不代表真实银行或支付产品。</p>
     </aside>
   </main>
 

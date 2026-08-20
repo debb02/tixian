@@ -1,6 +1,7 @@
-const STORAGE_KEY = "tixian-demo-config-v3";
+const STORAGE_KEY = "tixian-demo-config-v4";
 
 const DEFAULT_CONFIG = Object.freeze({
+  arrivalTemplate: "a1",
   amount: "10000",
   currency: "HK$",
   payoutAccount: "701***202",
@@ -13,6 +14,13 @@ const DEFAULT_CONFIG = Object.freeze({
   fpsReference: "FRN20241010PAYC694364383164",
   arrivalMessage: "轉數快收款",
   balanceLabel: "已存入餘額",
+  institutionName: "渣打香港",
+  recipientName: "WONG SUM YIU",
+  recipientBank: "STANDARD CHARTERED BANK (HONG KONG) LIMITED",
+  destinationAccount: "Mox戶口",
+  summaryLabel: "轉帳存入",
+  accountBalance: "•••",
+  memo: "0020461000737575轉入",
   device: "iphone",
   statusTime: "09:55",
   battery: 40,
