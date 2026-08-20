@@ -81,7 +81,7 @@
         <span>${icon("dots")}</span>
       </div>
       <article class="receipt receipt--a1">
-        <div class="receipt-mark">${icon("building-bank")}</div>
+        <div class="receipt-mark receipt-mark--source"><img src="assets/source-icons/fps-bank-a1.png" alt="轉數快收款圖標"></div>
         <p class="receipt-kicker">${value("arrivalMessage")}-來自 <strong>${value("payerName")}</strong></p>
         <h3>+${value("currency")} ${formatMoney(config.amount)}</h3>
         <div class="receipt-rule"></div>
@@ -134,7 +134,7 @@
           <p class="transfer-amount">+${formatMoney(config.amount)}<span>${currencyCode()}</span></p>
           <time>${arrival.dateChinesePadded}${arrival.time}</time>
           <b>${value("transactionStatus")}</b>
-          <div class="transfer-action">${icon("user-dollar")}<span>轉數到好友戶口</span></div>
+          <div class="transfer-action"><img src="assets/source-icons/friends-transfer.png" alt="好友轉賬圖標"><span>轉數到好友戶口</span></div>
         </section>
         <section class="transfer-details">
           <div><dt>由</dt><dd>${value("recipientName")}<br>${value("recipientBank")}</dd></div>
@@ -154,7 +154,7 @@
       </div>
       <main class="ledger-screen">
         <section class="ledger-hero">
-          <span class="ledger-wallet">${icon("wallet")}</span>
+          <span class="ledger-wallet"><img src="assets/source-icons/ledger-income.png" alt="收入圖標"></span>
           <b>收入</b>
           <strong>${value("currency")}${formatMoney(config.amount)}</strong>
         </section>
@@ -180,7 +180,7 @@
         <span>${icon("dots")}</span>
       </div>
       <article class="receipt receipt--a5">
-        <div class="receipt-mark">${icon("building-bank")}</div>
+        <div class="receipt-mark receipt-mark--source"><img src="assets/source-icons/fps-bank-a5.png" alt="轉數快收款圖標"></div>
         <p class="receipt-kicker">${value("arrivalMessage")}-來自<strong>${value("payerName")}</strong></p>
         <h3>+${value("currency")} ${formatMoney(config.amount)}</h3>
         <div class="receipt-rule"></div>
