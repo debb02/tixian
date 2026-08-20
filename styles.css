@@ -78,7 +78,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .preview-card { min-width: 0; }
 .phone-stage { display: grid; place-items: center; }
 .dual-preview-grid .phone-shell { width: min(350px, 100%); }
-.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 0; border-radius: 0; background: transparent; box-shadow: none; container-type: inline-size; }
 .phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 0; }
 .phone-screen--dark { color: #f5f5fb; background: #030408; }
 .phone-screen--light { color: #171b19; background: #f7f7f5; }
@@ -141,26 +141,29 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 
 .demo-watermark { position: absolute; z-index: 20; left: 50%; top: 50%; width: 150%; padding: 8px 0; transform: translate(-50%, -50%) rotate(-28deg); color: rgba(255, 255, 255, .34); font-size: 17px; font-weight: 900; letter-spacing: .08em; text-align: center; pointer-events: none; }
 .demo-watermark--light { border-color: rgba(184, 31, 50, .18); color: rgba(184, 31, 50, .24); }
-.app-header { position: relative; z-index: 4; height: 64px; display: grid; grid-template-columns: 58px 1fr 58px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.03); text-align: center; color: #626572; background: #05060a; font-size: 18px; }
-.app-header button { border: 0; color: #5c606c; background: none; font-size: 30px; }
-.tab-grid { position: relative; z-index: 2; padding: 22px 16px 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.tab-grid span { height: 48px; display: grid; place-items: center; border-radius: 4px; color: #9ea3b3; background: #12141e; font-size: 15px; }
+.app-header { position: relative; z-index: 4; height: 13.3cqw; display: grid; grid-template-columns: 13.3cqw 1fr 13.3cqw; align-items: center; border-bottom: 1px solid rgba(255,255,255,.03); text-align: center; color: #626572; background: #05060a; font-size: 3.9cqw; }
+.app-header button { border: 0; color: #5c606c; background: none; font-size: 6.1cqw; }
+.tab-grid { position: relative; z-index: 2; padding: 5.2cqw 5.4cqw 4.2cqw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2cqw; }
+.tab-grid span { height: 11cqw; display: grid; place-items: center; border-radius: 4px; color: #9ea3b3; background: #12141e; font-size: 3.5cqw; }
 .tab-grid span.active { color: #afb8d4; background: #1d2948; }
-.history-table { position: relative; z-index: 1; margin: 12px 14px 0; border: 1px solid #11131d; color: #707584; font-size: 11px; }
+.history-filter { position: relative; z-index: 1; height: 10.5cqw; margin: 0 5.4cqw; display: grid; grid-template-columns: 1fr 4.4cqw 1fr; align-items: center; color: #737888; font-size: 3.2cqw; text-align: center; }
+.history-filter i { width: 10px; height: 10px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg) translateY(-3px); }
+.history-table { position: relative; z-index: 1; margin: 0 18px; border: 1px solid #11131d; color: #707584; font-size: 11px; }
 .history-table > div { min-height: 66px; padding: 8px; display: grid; grid-template-columns: 1.2fr .8fr .8fr .7fr; align-items: center; border-bottom: 1px solid #11131d; text-align: center; }
+.history-table > .history-head { min-height: 35px; color: #747988; }
 .history-table b { color: #0a8b58; }.history-table a { color: #4b6da8; }
 .history-pagination { position: relative; z-index: 1; padding: 20px 50px; display: flex; align-items: center; justify-content: space-between; color: #727686; }
 .history-pagination b { color: #34518a; }
 .backdrop { position: absolute; z-index: 3; inset: 54px 0 82px; background: rgba(0, 0, 0, .76); }
-.detail-sheet { position: absolute; z-index: 5; left: 18px; right: 18px; top: 220px; padding-bottom: 26px; border-radius: 2px; background: #191d31; box-shadow: 0 18px 50px #000; }
-.sheet-close { position: absolute; z-index: 3; right: -13px; top: -18px; width: 42px; height: 42px; display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; color: #fff; background: #171a2b; font-size: 30px; font-weight: 700; line-height: 1; }
-.sheet-title { height: 54px; display: grid; place-items: center; background: #272d4b; font-size: 19px; }
-.amount { padding: 27px 20px 24px; text-align: center; font-size: 38px; font-weight: 520; letter-spacing: -.03em; }
+.detail-sheet { position: absolute; z-index: 5; left: 7.3cqw; right: 7.3cqw; top: calc(54px + 52cqw); height: 80cqw; padding-bottom: 4.8cqw; overflow: visible; border-radius: 2.5cqw 2.5cqw 0 0; background: #191d31; box-shadow: none; }
+.sheet-close { position: absolute; z-index: 3; right: -3cqw; top: -3cqw; width: 7.6cqw; height: 7.6cqw; display: grid; place-items: center; border: max(1px, .5cqw) solid #fff; border-radius: 50%; color: #fff; background: #171a2b; font-size: 5.8cqw; font-weight: 650; line-height: 1; }
+.sheet-title { height: 12.9cqw; display: grid; place-items: center; border-radius: 2.5cqw 2.5cqw 0 0; background: #272d4b; font-size: 3.9cqw; }
+.amount { padding: 6.8cqw 5cqw 5.3cqw; text-align: center; font-size: 6.6cqw; font-weight: 500; line-height: 1; letter-spacing: -.03em; }
 .amount--green { color: #00a959; }
-.detail-sheet dl { margin: 0; padding: 0 22px; display: grid; gap: 18px; }
-.detail-sheet dl div { display: grid; grid-template-columns: 1fr 1.35fr; gap: 15px; }
-.detail-sheet dt { color: #adb2c8; }
-.detail-sheet dd { margin: 0; color: #bfc3d6; text-align: right; overflow-wrap: anywhere; }
+.detail-sheet dl { margin: 0; padding: 0 5.4cqw; display: grid; gap: 5.7cqw; font-size: 3.6cqw; line-height: 1.35; }
+.detail-sheet dl div { display: grid; grid-template-columns: 27cqw minmax(0, 1fr); gap: 3cqw; }
+.detail-sheet dt { color: #adb2c8; white-space: nowrap; }
+.detail-sheet dd { margin: 0; color: #bfc3d6; text-align: right; white-space: nowrap; }
 .success { color: #0aa96b !important; }
 .support-bubble { position: absolute; z-index: 7; right: 18px; bottom: 104px; width: 54px; height: 54px; display: grid; place-items: center; border: 0; border-radius: 50%; background: linear-gradient(145deg, #6d4cff, #2516d9); box-shadow: 0 8px 24px rgba(41, 28, 219, .45); }
 .support-bubble i { position: relative; width: 24px; height: 18px; display: block; border: 3px solid #fff; border-radius: 50%; }
@@ -220,7 +223,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   .preview-panel { padding: 28px 10px 42px; min-height: 760px; }
   .preview-heading { padding: 0 8px; }
   .phone-shell { width: min(370px, calc(100vw - 20px)); }
-  .detail-sheet { top: 250px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
