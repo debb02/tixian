@@ -124,15 +124,11 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery-bolt { position: absolute; z-index: 3; color: currentColor; font-style: normal; line-height: 1; }
 .battery--low, .battery-system.battery--low { color: #ff5b65; }
 
-/* Apple: visible battery outline and terminal, percentage inside, charge bolt inside. */
-.battery--iphone { width: 34px; height: 16px; border: 1.4px solid #fff; border-radius: 4px; background: transparent; }
-.battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 2.5px; height: 6px; border-radius: 0 2px 2px 0; background: #fff; opacity: .9; }
-.battery--iphone i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 11px; border-radius: 2px; background: #fff; opacity: .95; }
-.battery--iphone b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; color: #fff; font-size: 8.5px; mix-blend-mode: difference; }
-.battery--iphone .battery-bolt { display: none; }
-.battery--iphone.battery--charging i { width: calc(100% - 2px); background: #4fd26f; opacity: 1; }
-.battery--iphone.battery--charging b { padding-right: 7px; color: #fff; mix-blend-mode: normal; }
-.battery--iphone.battery--charging .battery-bolt { right: 2px; top: 2px; display: block; color: #fff; font-size: 9px; text-shadow: 0 1px 1px rgba(0,0,0,.24); }
+/* Apple: one outline, one level fill, one terminal. */
+.battery--iphone { width: 30px; height: 15px; border: 1.4px solid currentColor; border-radius: 4px; background: transparent; }
+.battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 2.5px; height: 5px; border-radius: 0 2px 2px 0; background: currentColor; opacity: .78; }
+.battery--iphone i { left: 2px; top: 2px; width: max(1px, calc(var(--battery-level) - 4px)); max-width: calc(100% - 4px); height: 9px; border-radius: 2px; background: currentColor; opacity: .92; }
+.battery--iphone.battery--charging { color: #4fd26f; }
 
 /* Samsung One UI: percentage sits beside a compact outlined battery. */
 .battery-system { display: inline-flex; align-items: center; }
@@ -169,8 +165,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery--vivo .battery-bolt { right: -8px; top: 1px; font-size: 9px; }
 .battery--vivo.battery--charging i { color: #59dd78; opacity: 1; }
 
-.phone-screen--light .battery--iphone b { color: #fff; mix-blend-mode: difference; }
-.preview-card #bStatusBar .battery--iphone b { color: #fff; mix-blend-mode: normal; }
 
 .demo-watermark { position: absolute; z-index: 20; left: 50%; top: 50%; width: 150%; padding: 8px 0; transform: translate(-50%, -50%) rotate(-28deg); color: rgba(255, 255, 255, .34); font-size: 17px; font-weight: 900; letter-spacing: .08em; text-align: center; pointer-events: none; }
 .demo-watermark--light { border-color: rgba(184, 31, 50, .18); color: rgba(184, 31, 50, .24); }

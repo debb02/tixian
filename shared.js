@@ -92,9 +92,7 @@ function renderBattery(device, battery, charging) {
     </span>`;
   }
 
-  return `<span class="battery battery--iphone ${state}" ${label}>
-    <i ${level}></i><b>${battery}</b>${bolt}
-  </span>`;
+  return `<span class="battery battery--iphone ${state}" ${label}><i ${level}></i></span>`;
 }
 
 function renderStatusBar(root, config) {
