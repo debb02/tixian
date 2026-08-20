@@ -125,10 +125,9 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery--low, .battery-system.battery--low { color: #ff5b65; }
 
 /* Apple: one outline, one level fill, one terminal. */
-.battery--iphone { width: 30px; height: 15px; border: 1.4px solid currentColor; border-radius: 4px; background: transparent; }
+.battery--iphone { width: 30px; height: 15px; border: 1.4px solid currentColor; border-radius: 4px; color: #fff; background: transparent; }
 .battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 2.5px; height: 5px; border-radius: 0 2px 2px 0; background: currentColor; opacity: .78; }
 .battery--iphone i { left: 2px; top: 2px; width: max(1px, calc(var(--battery-level) - 4px)); max-width: calc(100% - 4px); height: 9px; border-radius: 2px; background: currentColor; opacity: .92; }
-.battery--iphone.battery--charging { color: #4fd26f; }
 
 /* Samsung One UI: percentage sits beside a compact outlined battery. */
 .battery-system { display: inline-flex; align-items: center; }
