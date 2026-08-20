@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>A 页面 · 提现配置台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="editor-page">
+  <div class="safety-ribbon">DEMO · 演示用途 · 非真实交易凭证</div>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">TIXIAN / PAGE A</p>
+      <h1>提现配置台</h1>
+    </div>
+    <div class="top-actions">
+      <button class="button button--ghost" id="resetButton" type="button">恢复默认</button>
+      <button class="button button--primary" id="openArrivalButton" type="button">保存并打开 B 页</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <form class="control-panel" id="configForm" autocomplete="off">
+      <section class="control-section">
+        <div class="section-heading">
+          <span>01</span>
+          <div><h2>交易内容</h2><p>B 页将直接读取以下字段</p></div>
+        </div>
+        <div class="field-grid">
+          <label class="field"><span>币种</span><select name="currency"><option>HK$</option><option>¥</option><option>$</option><option>NT$</option></select></label>
+          <label class="field field--wide"><span>金额</span><input name="amount" inputmode="decimal" value="2000.00"></label>
+          <label class="field field--wide"><span>汇款账户</span><input name="payoutAccount" value="950***351"></label>
+          <label class="field field--wide"><span>付款人名称</span><input name="payerName" value="CHUNG W** Y**"></label>
+          <label class="field"><span>交易类型</span><input name="transactionType" value="提现"></label>
+          <label class="field"><span>交易状态</span><select name="transactionStatus"><option>成功</option><option>处理中</option><option>失败</option></select></label>
+          <label class="field field--wide"><span>提现时间</span><input name="withdrawalTime" type="datetime-local"></label>
+          <label class="field field--wide"><span>到账时间</span><input name="arrivalTime" type="datetime-local"></label>
+          <label class="field field--wide"><span>交易编号</span><input name="transactionId"></label>
+          <label class="field field--wide"><span>FPS 参考编号</span><input name="fpsReference"></label>
+          <label class="field field--wide"><span>B 页到账文案</span><input name="arrivalMessage"></label>
+          <label class="field field--wide"><span>B 页账户状态</span><input name="balanceLabel"></label>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <div class="section-heading">
+          <span>02</span>
+          <div><h2>手机与状态栏</h2><p>A、B 两页同步应用</p></div>
+        </div>
+        <label class="field field--wide"><span>手机品牌</span>
+          <select name="device">
+            <option value="iphone">Apple iPhone</option>
+            <option value="samsung">Samsung Galaxy</option>
+            <option value="xiaomi">Xiaomi</option>
+            <option value="pixel">Google Pixel</option>
+            <option value="vivo">vivo</option>
+          </select>
+        </label>
+        <div class="field-grid field-grid--status">
+          <label class="field"><span>状态栏时间</span><input name="statusTime" type="time"></label>
+          <label class="field"><span>网络</span><select name="carrier"><option>5G</option><option>4G</option><option>LTE</option><option>3G</option></select></label>
+          <label class="field field--wide range-field"><span>电量 <output id="batteryOutput">72%</output></span><input name="battery" type="range" min="1" max="100" value="72"></label>
+          <label class="field field--wide range-field"><span>信号强度 <output id="signalOutput">4/4</output></span><input name="signal" type="range" min="1" max="4" value="4"></label>
+          <label class="switch-row field--wide"><span><b>显示 Wi-Fi</b><small>同时同步到 B 页状态栏</small></span><input name="wifi" type="checkbox"><i></i></label>
+        </div>
+      </section>
+
+      <div class="save-state" id="saveState"><i></i><span>修改会自动保存到当前浏览器</span></div>
+    </form>
+
+    <aside class="preview-panel">
+      <div class="preview-heading"><div><span>LIVE PREVIEW</span><h2>A 页面 · 提现</h2></div><a href="arrival.html" target="_blank">查看 B 页面 ↗</a></div>
+      <div class="phone-stage">
+        <div class="phone-shell" id="withdrawalPhone">
+          <div class="phone-screen phone-screen--dark">
+            <div id="aStatusBar"></div>
+            <div class="demo-watermark">演示 · 非真实交易凭证</div>
+            <div class="app-header"><button aria-label="返回">‹</button><span>交易记录</span><i></i></div>
+            <div class="tab-grid" aria-hidden="true"><span>存款</span><span class="active">提款</span><span>投注</span><span>转账</span><span>优惠</span><span>返利</span></div>
+            <div class="backdrop"></div>
+            <section class="detail-sheet">
+              <div class="sheet-title">明细</div>
+              <div class="amount amount--green" id="aAmount">+2000.00</div>
+              <dl>
+                <div><dt>汇款账户</dt><dd id="aAccount">950***351</dd></div>
+                <div><dt>交易类型</dt><dd id="aType">提现</dd></div>
+                <div><dt>交易状态</dt><dd class="success" id="aStatus">成功</dd></div>
+                <div><dt>交易时间</dt><dd id="aTime">2026-08-17 15:13:00</dd></div>
+              </dl>
+            </section>
+            <div class="phone-home-indicator"></div>
+          </div>
+        </div>
+      </div>
+      <p class="preview-note">设备外观是通用演示框架，不对应任何真实银行或支付产品。</p>
+    </aside>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

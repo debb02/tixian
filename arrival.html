@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>B 页面 · 到账演示</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="arrival-page">
+  <div class="safety-ribbon">DEMO · 演示用途 · 非真实交易凭证</div>
+  <header class="arrival-toolbar">
+    <div><p class="eyebrow">TIXIAN / PAGE B</p><h1>到账展示</h1></div>
+    <div class="top-actions"><a class="button button--ghost" href="index.html">← 返回 A 页设置</a><button class="button button--primary" id="refreshButton">读取最新设置</button></div>
+  </header>
+  <main class="arrival-stage">
+    <div class="phone-shell phone-shell--arrival" id="arrivalPhone">
+      <div class="phone-screen phone-screen--light">
+        <div id="bStatusBar"></div>
+        <div class="demo-watermark demo-watermark--light">演示 · 非真实交易凭证</div>
+        <div class="receipt-nav"><button aria-label="关闭">×</button><span>•••</span></div>
+        <article class="receipt">
+          <div class="fictional-mark">T</div>
+          <p class="receipt-kicker" id="bMessage">转数快收款</p>
+          <p class="receipt-from">来自 <strong id="bPayer">CHUNG W** Y**</strong></p>
+          <h2><span id="bCurrency">HK$</span> <span id="bAmount">2,000.00</span></h2>
+          <div class="receipt-rule"></div>
+          <dl>
+            <div><dt>当前状态</dt><dd class="success" id="bBalance">已存入余额</dd></div>
+            <div><dt>付款账户</dt><dd id="bAccount">950***351</dd></div>
+            <div><dt>收款时间</dt><dd id="bTime">2026-08-17 15:14</dd></div>
+            <div><dt>交易单号</dt><dd class="breakable" id="bTransaction">1040073000012801202405195540487215</dd></div>
+            <div><dt>FPS参考编号</dt><dd class="breakable" id="bReference">FRN20241010PAYC694364383164</dd></div>
+          </dl>
+          <div class="receipt-disclaimer"><b>DEMO</b><span>此页面仅用于界面原型演示，不代表任何真实转账或到账。</span></div>
+        </article>
+        <div class="phone-home-indicator phone-home-indicator--dark"></div>
+      </div>
+    </div>
+    <div class="arrival-meta"><span id="syncState">已读取 A 页设置</span><small>若 A 页在另一个标签页修改，此页会自动同步。</small></div>
+  </main>
+  <script src="shared.js"></script>
+  <script src="arrival.js"></script>
+</body>
+</html>
