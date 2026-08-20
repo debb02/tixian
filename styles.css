@@ -76,18 +76,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .preview-heading p { margin: 0; color: var(--muted); font-size: 12px; }
 .dual-preview-grid { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .preview-card { min-width: 0; }
-.preview-card-title { margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
-.preview-card-title span { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--green); font-size: 10px; font-weight: 900; }
-.preview-card-title h3 { margin: 0; font-size: 14px; }
 .phone-stage { display: grid; place-items: center; }
 .dual-preview-grid .phone-shell { width: min(350px, 100%); }
-.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 6px; border-radius: 34px; background: #0c0f12; box-shadow: var(--shadow), inset 0 0 0 1px #32363b; }
-.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 28px; }
+.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 0; }
 .phone-screen--dark { color: #f5f5fb; background: #030408; }
 .phone-screen--light { color: #171b19; background: #f7f7f5; }
-.phone-shell[data-device="samsung"], .phone-shell[data-device="xiaomi"], .phone-shell[data-device="vivo"] { border-radius: 30px; }
-.phone-shell[data-device="samsung"] .phone-screen, .phone-shell[data-device="xiaomi"] .phone-screen, .phone-shell[data-device="vivo"] .phone-screen { border-radius: 22px; }
-.phone-shell[data-device="pixel"] { border-radius: 34px; background: #24272c; }
 
 .status-bar { position: relative; z-index: 8; height: 54px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #fff; background: #171a2b; font-size: 17px; font-weight: 800; letter-spacing: -.03em; }
 .status-left, .status-right { position: relative; z-index: 2; display: flex; align-items: center; gap: 7px; min-width: 118px; }
