@@ -124,15 +124,15 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery-bolt { position: absolute; z-index: 3; color: currentColor; font-style: normal; line-height: 1; }
 .battery--low, .battery-system.battery--low { color: #ff5b65; }
 
-/* Apple: percentage inside the filled rounded battery, terminal and charge bolt outside. */
-.battery--iphone { width: 32px; height: 17px; border: 1.4px solid currentColor; border-radius: 5px; }
-.battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 3px; height: 7px; border-radius: 0 2px 2px 0; background: currentColor; }
-.battery--iphone i { inset: 1px auto 1px 1px; max-width: calc(100% - 2px); height: calc(100% - 2px); border-radius: 3px; opacity: .92; }
-.battery--iphone b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; color: #0a0c0b; font-size: 9px; }
-.battery--iphone .battery-bolt { right: -9px; top: -3px; color: #fff; font-size: 10px; text-shadow: 0 1px 2px #000; }
-.battery--iphone.battery--charging { border-color: #56d873; background: #56d873; }
-.battery--iphone.battery--charging i { background: #56d873; }
-.battery--iphone.battery--charging b { color: #fff; }
+/* Apple: visible battery outline and terminal, percentage inside, charge bolt inside. */
+.battery--iphone { width: 34px; height: 16px; border: 1.4px solid #fff; border-radius: 4px; background: transparent; }
+.battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 2.5px; height: 6px; border-radius: 0 2px 2px 0; background: #fff; opacity: .9; }
+.battery--iphone i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 11px; border-radius: 2px; background: #fff; opacity: .95; }
+.battery--iphone b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; color: #fff; font-size: 8.5px; mix-blend-mode: difference; }
+.battery--iphone .battery-bolt { display: none; }
+.battery--iphone.battery--charging i { width: calc(100% - 2px); background: #4fd26f; opacity: 1; }
+.battery--iphone.battery--charging b { padding-right: 7px; color: #fff; mix-blend-mode: normal; }
+.battery--iphone.battery--charging .battery-bolt { right: 2px; top: 2px; display: block; color: #fff; font-size: 9px; text-shadow: 0 1px 1px rgba(0,0,0,.24); }
 
 /* Samsung One UI: percentage sits beside a compact outlined battery. */
 .battery-system { display: inline-flex; align-items: center; }
