@@ -1,4 +1,4 @@
-const STORAGE_KEY = "tixian-demo-config-v2";
+const STORAGE_KEY = "tixian-demo-config-v3";
 
 const DEFAULT_CONFIG = Object.freeze({
   amount: "10000",
@@ -11,8 +11,8 @@ const DEFAULT_CONFIG = Object.freeze({
   arrivalTime: "2026-08-17T15:10:45",
   transactionId: "1040073000012801202405195540487215",
   fpsReference: "FRN20241010PAYC694364383164",
-  arrivalMessage: "转数快收款",
-  balanceLabel: "已存入余额",
+  arrivalMessage: "轉數快收款",
+  balanceLabel: "已存入餘額",
   device: "iphone",
   statusTime: "09:55",
   battery: 40,
