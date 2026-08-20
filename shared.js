@@ -68,9 +68,8 @@ function renderStatusBar(root, config) {
   root.innerHTML = `
     <div class="status-left">
       <span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>
-      ${device === "iphone" ? '<span class="status-location">●</span>' : ""}
     </div>
-    <div class="status-device">${escapeHtml(DEVICE_LABELS[device] || DEVICE_LABELS.iphone)}</div>
+    <div class="status-cutout" aria-hidden="true"><i></i></div>
     <div class="status-right">
       <span class="carrier">${escapeHtml(config.carrier || "5G")}</span>
       ${config.wifi ? '<span class="wifi" aria-label="Wi-Fi"><i></i></span>' : ""}
@@ -78,7 +77,7 @@ function renderStatusBar(root, config) {
         ${[1, 2, 3, 4].map(level => `<i class="${level <= signal ? "on" : ""}"></i>`).join("")}
       </span>
       <span class="battery ${battery <= 20 ? "battery--low" : ""}" aria-label="${battery}% battery">
-        <i style="width:${battery}%"></i><b>${device === "iphone" ? battery : ""}</b>
+        <i style="width:${battery}%"></i><b>${battery}</b>
       </span>
     </div>`;
 }
