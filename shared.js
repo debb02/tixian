@@ -60,6 +60,43 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, Number(value) || 0));
 }
 
+function renderBattery(device, battery, charging) {
+  const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
+  const level = `style="--battery-level:${battery}%"`;
+  const bolt = charging ? '<em class="battery-bolt" aria-hidden="true">ϟ</em>' : "";
+  const label = `aria-label="${battery}% battery${charging ? ", charging" : ""}"`;
+
+  if (device === "samsung") {
+    return `<span class="battery-system battery-system--samsung ${state}" ${label}>
+      <b class="battery-number">${battery}%</b>
+      <span class="battery battery--samsung"><i ${level}></i>${bolt}</span>
+    </span>`;
+  }
+
+  if (device === "xiaomi") {
+    return `<span class="battery battery--xiaomi ${state}" ${label}>
+      <i ${level}></i><b>${battery}</b>${bolt}
+    </span>`;
+  }
+
+  if (device === "pixel") {
+    return `<span class="battery-system battery-system--pixel ${state}" ${label}>
+      <b class="battery-number">${battery}%</b>
+      <span class="battery battery--pixel"><i ${level}></i>${bolt}</span>
+    </span>`;
+  }
+
+  if (device === "vivo") {
+    return `<span class="battery battery--vivo ${state}" ${label}>
+      <i ${level}></i><b>${battery}</b><span class="battery-vivo-notch" aria-hidden="true"></span>${bolt}
+    </span>`;
+  }
+
+  return `<span class="battery battery--iphone ${state}" ${label}>
+    <i ${level}></i><b>${battery}</b>${bolt}
+  </span>`;
+}
+
 function renderStatusBar(root, config) {
   if (!root) return;
   const device = config.device || "iphone";
@@ -82,9 +119,7 @@ function renderStatusBar(root, config) {
       <span class="signal" aria-label="signal">
         ${[1, 2, 3, 4].map(level => `<i class="${level <= signal ? "on" : ""}"></i>`).join("")}
       </span>
-      <span class="battery ${battery <= 20 ? "battery--low" : ""} ${config.charging ? "battery--charging" : ""}" aria-label="${battery}% battery">
-        <i style="width:${battery}%"></i><b>${battery}</b>${config.charging ? '<em aria-label="charging">ϟ</em>' : ""}
-      </span>
+      ${renderBattery(device, battery, config.charging)}
     </div>`;
 }
 

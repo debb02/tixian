@@ -122,22 +122,60 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .wifi::before, .wifi::after { content: ""; position: absolute; left: 50%; top: 1px; width: 20px; height: 14px; transform: translateX(-50%); border: 2.5px solid currentColor; border-color: currentColor transparent transparent; border-radius: 50%; }
 .wifi::after { top: 7px; width: 10px; height: 7px; }
 .wifi i { position: absolute; z-index: 2; left: 9px; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
-.battery { position: relative; width: 30px; height: 16px; padding: 1px; display: block; border: 1.4px solid currentColor; border-radius: 4px; }
-.battery::after { content: ""; position: absolute; right: -4px; top: 4px; width: 3px; height: 7px; border-radius: 0 2px 2px 0; background: currentColor; }
-.battery i { height: 100%; display: block; border-radius: 1px; background: currentColor; opacity: .9; }
-.battery b { position: absolute; inset: 0; display: grid; place-items: center; color: #0a0c0b; font-size: 9px; font-weight: 900; line-height: 1; }
-.battery em { position: absolute; right: -9px; top: -3px; color: #fff; font-size: 10px; font-style: normal; text-shadow: 0 1px 2px #000; }
-.phone-screen--light .battery b { color: #fff; mix-blend-mode: difference; }
-.battery--low i { background: #ff505f; }
-.battery--charging { border-color: #56d873; background: #56d873; }
-.battery--charging i { background: #56d873; }
-.battery--charging b { color: #fff; }
-.status-bar--iphone .battery { width: 32px; height: 17px; border-radius: 5px; }
-.status-bar--iphone .battery::after { top: 4px; height: 7px; }
-.status-bar--samsung .battery { width: 30px; border-radius: 3px; }
-.status-bar--xiaomi .battery { width: 34px; border-radius: 3px; }
-.status-bar--pixel .battery { width: 28px; border-radius: 4px; }
-.status-bar--vivo .battery { width: 32px; border-radius: 6px; }
+.battery, .battery-system { position: relative; flex: none; color: currentColor; }
+.battery { display: block; }
+.battery i { position: absolute; display: block; width: var(--battery-level); background: currentColor; }
+.battery b, .battery-number { font-weight: 850; line-height: 1; }
+.battery-bolt { position: absolute; z-index: 3; color: currentColor; font-style: normal; line-height: 1; }
+.battery--low, .battery-system.battery--low { color: #ff5b65; }
+
+/* Apple: percentage inside the filled rounded battery, terminal and charge bolt outside. */
+.battery--iphone { width: 32px; height: 17px; border: 1.4px solid currentColor; border-radius: 5px; }
+.battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 3px; height: 7px; border-radius: 0 2px 2px 0; background: currentColor; }
+.battery--iphone i { inset: 1px auto 1px 1px; max-width: calc(100% - 2px); height: calc(100% - 2px); border-radius: 3px; opacity: .92; }
+.battery--iphone b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; color: #0a0c0b; font-size: 9px; }
+.battery--iphone .battery-bolt { right: -9px; top: -3px; color: #fff; font-size: 10px; text-shadow: 0 1px 2px #000; }
+.battery--iphone.battery--charging { border-color: #56d873; background: #56d873; }
+.battery--iphone.battery--charging i { background: #56d873; }
+.battery--iphone.battery--charging b { color: #fff; }
+
+/* Samsung One UI: percentage sits beside a compact outlined battery. */
+.battery-system { display: inline-flex; align-items: center; }
+.battery-system--samsung { gap: 3px; }
+.battery-system--samsung .battery-number { font-size: 8px; }
+.battery--samsung { width: 19px; height: 10px; border: 1.3px solid currentColor; border-radius: 2px; }
+.battery--samsung::after { content: ""; position: absolute; right: -3px; top: 2px; width: 2px; height: 4px; border-radius: 0 1px 1px 0; background: currentColor; }
+.battery--samsung i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 6px; border-radius: 1px; }
+.battery--samsung .battery-bolt { left: 7px; top: 0; color: #111526; font-size: 8px; }
+.battery-system--samsung.battery--charging { color: #fff; }
+
+/* Xiaomi HyperOS: the number stays inside a slim rectangular indicator. */
+.battery--xiaomi { width: 31px; height: 14px; border: 1.2px solid currentColor; border-radius: 2px; }
+.battery--xiaomi::after { content: ""; position: absolute; right: -3px; top: 3px; width: 2px; height: 6px; background: currentColor; }
+.battery--xiaomi i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 10px; border-radius: 1px; opacity: .32; }
+.battery--xiaomi b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; font-size: 8px; }
+.battery--xiaomi .battery-bolt { right: -8px; top: 1px; font-size: 9px; }
+.battery--xiaomi.battery--charging i { color: #65df78; opacity: 1; }
+
+/* Pixel: Android percentage text and a separate minimal battery glyph. */
+.battery-system--pixel { gap: 4px; }
+.battery-system--pixel .battery-number { font-size: 8px; }
+.battery--pixel { width: 16px; height: 10px; border: 1.3px solid currentColor; border-radius: 1px; }
+.battery--pixel::after { content: ""; position: absolute; right: -3px; top: 2px; width: 2px; height: 4px; background: currentColor; }
+.battery--pixel i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 6px; border-radius: 0; }
+.battery--pixel .battery-bolt { left: 5px; top: 0; color: #111526; font-size: 8px; }
+.battery-system--pixel.battery--charging { color: #7be18a; }
+
+/* vivo OriginOS/Funtouch: capsule pattern with percentage inside and an inner end notch. */
+.battery--vivo { width: 30px; height: 14px; border: 1.2px solid currentColor; border-radius: 7px; }
+.battery--vivo i { left: 1px; top: 1px; max-width: calc(100% - 2px); height: 10px; border-radius: 6px; opacity: .28; }
+.battery--vivo b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; font-size: 8px; }
+.battery-vivo-notch { position: absolute; z-index: 2; right: 3px; top: 3px; width: 1px; height: 6px; background: currentColor; opacity: .6; }
+.battery--vivo .battery-bolt { right: -8px; top: 1px; font-size: 9px; }
+.battery--vivo.battery--charging i { color: #59dd78; opacity: 1; }
+
+.phone-screen--light .battery--iphone b { color: #fff; mix-blend-mode: difference; }
+.preview-card #bStatusBar .battery--iphone b { color: #fff; mix-blend-mode: normal; }
 
 .demo-watermark { position: absolute; z-index: 20; left: 50%; top: 50%; width: 150%; padding: 8px 0; transform: translate(-50%, -50%) rotate(-28deg); color: rgba(255, 255, 255, .34); font-size: 17px; font-weight: 900; letter-spacing: .08em; text-align: center; pointer-events: none; }
 .demo-watermark--light { border-color: rgba(184, 31, 50, .18); color: rgba(184, 31, 50, .24); }
