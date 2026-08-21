@@ -134,14 +134,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 
 /* Apple assets */
 .battery--iphone { width: 31px; height: 15px; color: #fff; }
-.battery--iphone i { left: 2px; top: 2px; width: max(1px, calc(var(--battery-level) - 6px)); max-width: 25px; height: 11px; border-radius: 3px; opacity: .92; }
-.battery--iphone b { position: absolute; z-index: 3; inset: 0 3px 0 0; display: grid; place-items: center; color: #34343a; font-size: 8px; letter-spacing: -.04em; }
-.battery--iphone.battery--with-percent i,
-.battery--iphone.battery--charging i { display: none; }
+.battery--iphone i { left: 2px; top: 2px; width: var(--battery-fill); max-width: 25px; height: 11px; border-radius: 3px; opacity: .92; }
+.battery--iphone b { position: absolute; z-index: 3; inset: 0 3px 0 0; display: grid; place-items: center; color: #fff; font-size: 8px; letter-spacing: -.04em; mix-blend-mode: difference; }
 .battery--iphone.battery--charging { color: #52dc78; }
-.battery--iphone.battery--charging b { padding-right: 5px; color: #fff; }
+.battery--iphone.battery--charging b { padding-right: 5px; color: #fff; mix-blend-mode: normal; }
 .battery--iphone .battery-bolt { right: 3px; top: 2px; width: 5px; height: 10px; }
-.battery--iphone.battery--low:not(.battery--charging) b { color: #fff; }
+.battery--iphone.battery--low:not(.battery--charging) b { color: #fff; mix-blend-mode: normal; }
 
 /* Samsung assets */
 .battery-system--samsung { gap: 3px; }
@@ -273,9 +271,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone.battery--charging,
 .phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone.battery--charging { color: #52dc78; }
 .battery--iphone.battery--low { color: #ff5b65; }
-.preview-card #bStatusBar .battery--iphone b { color: #171a2b; }
-.preview-card #bStatusBar .battery--iphone.battery--charging b { color: #fff; }
-.preview-card #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b { color: #fff; }
 
 .demo-stamp { position: absolute; z-index: 30; left: 10px; bottom: 10px; padding: 4px 7px; border: 1px solid rgba(150,25,44,.32); border-radius: 4px; color: rgba(150,25,44,.72); background: rgba(255,255,255,.84); font-size: 8px; font-weight: 900; letter-spacing: .08em; pointer-events: none; }
 .receipt { height: calc(100% - 54px); padding: 36px 28px 70px; overflow: hidden; color: #171717; background: #fff; text-align: center; }

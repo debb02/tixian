@@ -83,9 +83,9 @@ function clamp(value, min, max) {
 
 function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
-  const level = `style="--battery-level:${battery}%"`;
-  const batteryAsset = device === "iphone" && (showPercent || charging) ? "battery-percent" : "battery";
-  const shell = `<img class="battery-shell" src="${statusIconPath(device, batteryAsset)}" alt="" aria-hidden="true">`;
+  const iphoneFill = Math.min(25, Math.max(1, battery * .25)).toFixed(2);
+  const level = `style="--battery-level:${battery}%;--battery-fill:${iphoneFill}px"`;
+  const shell = `<img class="battery-shell" src="${statusIconPath(device, "battery")}" alt="" aria-hidden="true">`;
   const bolt = charging ? `<img class="battery-bolt" src="${statusIconPath(device, "charging")}" alt="" aria-hidden="true">` : "";
   const percentClass = showPercent ? "battery--with-percent" : "";
   const label = `aria-label="${battery}% battery${charging ? ", charging" : ""}"`;
