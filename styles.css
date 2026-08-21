@@ -17,7 +17,7 @@
 * { box-sizing: border-box; }
 html { min-height: 100%; overflow-x: hidden; background: var(--paper); }
 body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); }
-body.editor-page { height: 100vh; overflow: hidden; }
+body.editor-page { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -26,6 +26,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
   border-bottom: 1px solid var(--line); background: rgba(243, 241, 235, .94);
 }
+body.editor-page .topbar { min-height: 76px; padding-top: 10px; padding-bottom: 10px; flex: 0 0 auto; }
 .eyebrow { margin: 0 0 5px; color: var(--green); font-size: 11px; font-weight: 850; letter-spacing: .18em; }
 h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", serif; }
 .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -39,7 +40,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .button--primary:hover { background: var(--green-dark); }
 .button--ghost { background: transparent; }
 
-.workspace { height: calc(100vh - 104px); min-height: 0; display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); overflow: hidden; }
+.workspace { height: auto; min-height: 0; flex: 1 1 auto; display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); overflow: hidden; }
 .control-panel { height: 100%; padding: 34px clamp(22px, 4vw, 58px) 64px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #87928b #f1f0ea; scrollbar-gutter: stable; scrollbar-width: thin; background: var(--panel); border-right: 1px solid var(--line); }
 .control-panel::-webkit-scrollbar { width: 8px; }
 .control-panel::-webkit-scrollbar-track { background: #f1f0ea; }
@@ -73,14 +74,14 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .save-state { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
 .save-state i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(11, 138, 91, .1); }
 
-.preview-panel { height: 100%; padding: 34px 30px 50px; overflow-y: auto; overscroll-behavior: contain; background: #e9e7e1; }
-.preview-heading { max-width: 780px; margin: 0 auto 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: 20px; }
+.preview-panel { height: 100%; min-height: 0; padding: 20px 24px; overflow: hidden; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 14px; container-type: size; background: #e9e7e1; }
+.preview-heading { width: 100%; max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: 20px; }
 .preview-heading span { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .16em; }
 .preview-heading h2 { margin: 3px 0 0; font-size: 18px; }
-.dual-preview-grid { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
-.preview-card { min-width: 0; }
-.phone-stage { display: grid; place-items: center; }
-.dual-preview-grid .phone-shell { width: min(350px, 100%); }
+.dual-preview-grid { width: 100%; height: 100%; min-height: 0; max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.preview-card { min-width: 0; height: 100%; min-height: 0; }
+.phone-stage { height: 100%; min-height: 0; display: grid; place-items: center; }
+.dual-preview-grid .phone-shell { width: min(350px, 100%, calc(46.2cqh - 58px)); }
 .phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 0; border-radius: 0; background: transparent; box-shadow: none; container-type: inline-size; }
 .phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 0; }
 .phone-screen--dark { color: #f5f5fb; background: #030408; }
@@ -232,7 +233,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .browser-more { letter-spacing: 2px; }
 .phone-home-indicator { position: absolute; z-index: 15; left: 50%; bottom: 5px; width: 112px; height: 4px; transform: translateX(-50%); border-radius: 99px; background: rgba(255,255,255,.9); }
 .phone-home-indicator--dark { background: #161a18; }
-.preview-note { max-width: 390px; margin: 16px auto 0; color: var(--muted); font-size: 11px; text-align: center; }
+.preview-note { max-width: 520px; margin: 0 auto; color: var(--muted); font-size: 11px; text-align: center; }
 
 .template-switcher { margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
 .template-switcher button { height: 30px; border: 1px solid #cdd1cb; border-radius: 8px; color: #5e6862; background: rgba(255,255,255,.68); font-size: 11px; font-weight: 800; cursor: pointer; }
@@ -356,17 +357,19 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .ledger-photo b { font-size: 14px; font-weight: 500; }
 
 @media (max-width: 760px) {
-  body.editor-page { height: auto; overflow-x: hidden; overflow-y: auto; }
+  body.editor-page { height: auto; overflow-x: hidden; overflow-y: auto; display: block; }
   .workspace { height: auto; min-height: calc(100vh - 104px); grid-template-columns: 1fr; overflow: visible; }
   .control-panel { height: auto; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); }
-  .preview-panel { height: auto; min-height: 850px; overflow: visible; }
-  .preview-heading { grid-template-columns: 1fr; align-items: start; }
-  .dual-preview-grid { grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
+  .preview-panel { height: auto; min-height: 850px; overflow: visible; display: block; container-type: normal; }
+  .preview-heading { margin-bottom: 20px; grid-template-columns: 1fr; align-items: start; }
+  .dual-preview-grid { height: auto; grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
+  .preview-card, .phone-stage { height: auto; }
   .dual-preview-grid .phone-shell { width: min(390px, 100%); }
+  .preview-note { margin-top: 16px; }
 }
 
 @media (max-width: 620px) {
-  .topbar { padding: 20px 16px; align-items: flex-start; flex-direction: column; }
+  body.editor-page .topbar { padding: 20px 16px; align-items: flex-start; flex-direction: column; }
   .top-actions { width: 100%; }
   .top-actions .button { flex: 1; }
   .workspace { min-height: auto; }
