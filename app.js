@@ -105,7 +105,13 @@
       </div>
       <main class="inbox-screen">
         <article class="inbox-card">
-          <img class="inbox-header-source" src="assets/source-icons/a2-inbox-header.png" alt="渣打香港收件箱通知顶部">
+          <header class="inbox-header">
+            <img class="inbox-header-source" src="assets/source-icons/a2-inbox-header.png" alt="文件与文件盒背景图">
+            <div class="inbox-header-copy">
+              <h3>${value("institutionName")}</h3>
+              <p>${arrival.dateChinese}<br>${arrival.meridiemTime}</p>
+            </div>
+          </header>
           <p class="inbox-message">${value("institutionName")}：您从 ${value("payerName")} 收到<br>${currencyCode()}${plainAmount()}.日期:${arrival.dateMdy}.</p>
         </article>
       </main>`;
