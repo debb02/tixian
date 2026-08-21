@@ -217,7 +217,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 }
 
 
-.demo-watermark { position: absolute; z-index: 20; left: 12px; bottom: 91px; padding: 5px 8px; border: 1px solid rgba(255,255,255,.28); border-radius: 5px; color: rgba(255,255,255,.72); background: rgba(8,10,16,.58); font-size: 8px; font-weight: 850; letter-spacing: .08em; pointer-events: none; }
 .app-header { position: relative; z-index: 4; height: 13.3cqw; display: grid; grid-template-columns: 13.3cqw 1fr 13.3cqw; align-items: center; border-bottom: 1px solid rgba(255,255,255,.03); text-align: center; color: #626572; background: #05060a; font-size: 3.9cqw; }
 .app-header button { border: 0; color: #5c606c; background: none; font-size: 6.1cqw; }
 .tab-grid { position: relative; z-index: 2; padding: 5.2cqw 5.4cqw 4.2cqw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2cqw; }
@@ -256,7 +255,8 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .browser-more { letter-spacing: 2px; }
 .phone-home-indicator { position: absolute; z-index: 15; left: 50%; bottom: 5px; width: 112px; height: 4px; transform: translateX(-50%); border-radius: 99px; background: rgba(255,255,255,.9); }
 .phone-home-indicator--dark { background: #161a18; }
-.preview-note { max-width: 520px; margin: 0 auto; color: var(--muted); font-size: 11px; text-align: center; }
+.page-footer { min-height: 34px; padding: 6px clamp(18px, 4vw, 58px); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 12px; border-top: 1px solid var(--line); color: var(--muted); background: var(--paper); font-size: 10px; text-align: center; }
+.page-footer strong { padding: 3px 7px; border: 1px solid rgba(150,25,44,.32); border-radius: 4px; color: rgba(150,25,44,.78); background: rgba(255,255,255,.72); font-size: 9px; letter-spacing: .06em; white-space: nowrap; }
 
 .template-switcher { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
 .template-switcher button { height: 30px; border: 1px solid #cdd1cb; border-radius: 8px; color: #5e6862; background: rgba(255,255,255,.68); font-size: 11px; font-weight: 800; cursor: pointer; }
@@ -317,7 +317,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b,
 .phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b { color: #111; }
 
-.demo-stamp { position: absolute; z-index: 30; left: 10px; bottom: 10px; padding: 4px 7px; border: 1px solid rgba(150,25,44,.32); border-radius: 4px; color: rgba(150,25,44,.72); background: rgba(255,255,255,.84); font-size: 8px; font-weight: 900; letter-spacing: .08em; pointer-events: none; }
 .receipt { height: calc(100% - 54px); padding: 36px 28px 70px; overflow: hidden; color: #171717; background: #fff; text-align: center; }
 .receipt-mark { position: relative; width: 66px; height: 66px; margin: 0 auto 24px; overflow: hidden; border-radius: 50%; background: #fff; }
 .source-icon { width: 100%; height: 100%; object-fit: contain; }
@@ -385,7 +384,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   .dual-preview-grid { height: auto; grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
   .preview-card, .phone-stage { height: auto; }
   .dual-preview-grid .phone-shell { width: min(390px, 100%); }
-  .preview-note { margin-top: 16px; }
+  .page-footer { flex-wrap: wrap; gap: 5px 10px; }
 }
 
 @media (max-width: 620px) {
