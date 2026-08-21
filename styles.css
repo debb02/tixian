@@ -271,6 +271,18 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone.battery--charging,
 .phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone.battery--charging { color: #52dc78; }
 .battery--iphone.battery--low { color: #ff5b65; }
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery--low:not(.battery--charging),
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery-system.battery--low:not(.battery--charging),
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery--low:not(.battery--charging),
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery-system.battery--low:not(.battery--charging) { color: #ff5b65; }
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery--low:not(.battery--charging) .battery-shell,
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery-system.battery--low:not(.battery--charging) .battery-shell,
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery--low:not(.battery--charging) .battery-shell,
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery-system.battery--low:not(.battery--charging) .battery-shell {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(78%) saturate(2742%) hue-rotate(326deg) brightness(105%) contrast(101%);
+}
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b,
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b { color: #111; }
 
 .demo-stamp { position: absolute; z-index: 30; left: 10px; bottom: 10px; padding: 4px 7px; border: 1px solid rgba(150,25,44,.32); border-radius: 4px; color: rgba(150,25,44,.72); background: rgba(255,255,255,.84); font-size: 8px; font-weight: 900; letter-spacing: .08em; pointer-events: none; }
 .receipt { height: calc(100% - 54px); padding: 36px 28px 70px; overflow: hidden; color: #171717; background: #fff; text-align: center; }
