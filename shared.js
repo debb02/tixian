@@ -81,6 +81,11 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, Number(value) || 0));
 }
 
+function statusDate(value) {
+  const match = String(value || "").match(/\d{4}-(\d{2})-(\d{2})/);
+  return match ? `${match[2]}/${match[1]}` : "17/08";
+}
+
 function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
   const iphoneFill = Math.min(25, Math.max(1, battery * .25)).toFixed(2);
@@ -91,9 +96,8 @@ function renderBattery(device, battery, charging, showPercent) {
   const label = `aria-label="${battery}% battery${charging ? ", charging" : ""}"`;
 
   if (device === "samsung") {
-    return `<span class="battery-system battery-system--samsung ${state}" ${label}>
-      ${showPercent ? `<b class="battery-number">${battery}%</b>` : ""}
-      <span class="battery battery--samsung"><i ${level}></i>${shell}${bolt}</span>
+    return `<span class="battery battery--samsung ${state} ${percentClass}" ${label}>
+      <i ${level}></i>${shell}${showPercent ? `<b>${battery}</b>` : ""}${bolt}
     </span>`;
   }
 
@@ -126,25 +130,32 @@ function renderStatusBar(root, config) {
   const device = config.device || "iphone";
   const battery = clamp(config.battery, 1, 100);
   const signal = clamp(config.signal, 1, 4);
-  const carrier = config.carrier ? `<span class="carrier">${escapeHtml(config.carrier)}</span>` : "";
+  const carrier = config.carrier ? `<span class="network-label">${escapeHtml(config.carrier)}</span>` : "";
   const wifi = config.wifi ? `<span class="wifi" aria-label="Wi-Fi"><img src="${statusIconPath(device, "wifi")}" alt=""></span>` : "";
   const signalIcon = `<span class="signal" aria-label="signal" style="--signal-clip:${(4 - signal) * 25}%"><img src="${statusIconPath(device, "signal")}" alt=""></span>`;
   const batteryIcon = renderBattery(device, battery, config.charging, config.showBatteryPercent);
-  const layouts = {
+  const leftLayouts = {
+    iphone: `<span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>`,
+    samsung: `<span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span><span class="status-date">${statusDate(config.withdrawalTime)}</span><img class="status-notifications" src="${statusIconPath(device, "notifications")}" alt="" aria-hidden="true">`,
+    xiaomi: `<span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span><img class="status-notifications" src="${statusIconPath(device, "notifications")}" alt="" aria-hidden="true">`,
+    pixel: `<span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>`,
+    vivo: `<span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>`
+  };
+  const rightLayouts = {
     iphone: `${signalIcon}${wifi}${batteryIcon}`,
-    samsung: `<span class="status-mode status-mode--samsung" aria-hidden="true"></span>${carrier}${wifi}${signalIcon}${batteryIcon}`,
-    xiaomi: `<span class="status-mode status-mode--xiaomi" aria-hidden="true">0.0K/s</span>${carrier}${wifi}${signalIcon}${batteryIcon}`,
-    pixel: `${carrier}${wifi}${signalIcon}${batteryIcon}`,
-    vivo: `<span class="status-mode status-mode--vivo" aria-hidden="true">HD</span>${carrier}${signalIcon}${wifi}${batteryIcon}`
+    samsung: `${wifi}${signalIcon}${carrier}${batteryIcon}`,
+    xiaomi: `<span class="status-mode status-mode--xiaomi" aria-hidden="true">×1</span>${signalIcon}${wifi}${carrier}${batteryIcon}`,
+    pixel: `${wifi}${signalIcon}${carrier}${batteryIcon}`,
+    vivo: `<span class="status-mode status-mode--vivo" aria-hidden="true">0.2K</span>${carrier}${signalIcon}${wifi}${batteryIcon}`
   };
   root.className = `status-bar status-bar--${device}`;
   root.innerHTML = `
-    <div class="status-left">
-      <span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>
+    <div class="status-left status-left--${device}">
+      ${leftLayouts[device] || leftLayouts.iphone}
     </div>
     <div class="status-cutout" aria-hidden="true"><i></i></div>
     <div class="status-right status-right--${device}">
-      ${layouts[device] || layouts.iphone}
+      ${rightLayouts[device] || rightLayouts.iphone}
     </div>`;
 }
 
