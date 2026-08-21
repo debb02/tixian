@@ -18,11 +18,11 @@
     a1: "A1 到账 · 转数快收款",
     a2: "A2 到账 · 收件箱通知",
     a3: "A3 到账 · 交易详情",
-    a4: "A4 到账 · 账户流水",
-    a5: "A5 到账 · 收款凭条"
+    a4: "A4 到账 · 账户流水"
   };
 
   let config = loadConfig();
+  if (!templateLabels[config.arrivalTemplate]) config.arrivalTemplate = "a1";
   let saveTimer;
 
   const value = (key) => escapeHtml(config[key]);
@@ -173,28 +173,6 @@
       </main>`;
   }
 
-  function renderA5() {
-    const arrival = getDateParts(config.withdrawalTime);
-    return `
-      <div class="arrival-nav arrival-nav--dark">
-        <button type="button" aria-label="关闭">${icon("x")}</button>
-        <span>${icon("dots")}</span>
-      </div>
-      <article class="receipt receipt--a5">
-        <div class="receipt-mark receipt-mark--source"><img class="source-icon" src="assets/generated-icons/fps-bank.png" alt="轉數快收款圖標"></div>
-        <p class="receipt-kicker">${value("arrivalMessage")}-來自<strong>${value("payerName")}</strong></p>
-        <h3>+${value("currency")} ${formatMoney(config.amount)}</h3>
-        <div class="receipt-rule"></div>
-        <dl>
-          <div><dt>當前狀態</dt><dd>${value("balanceLabel")}</dd></div>
-          <div><dt>付款賬戶</dt><dd>${value("payoutAccount")}</dd></div>
-          <div><dt>收款時間</dt><dd>${arrival.dateSlash.replaceAll("/", "-")} ${arrival.timeSeconds}</dd></div>
-          <div><dt>交易單號</dt><dd class="breakable">${value("transactionId")}</dd></div>
-          <div><dt>FPS參考號</dt><dd class="breakable">${value("fpsReference")}</dd></div>
-        </dl>
-      </article>`;
-  }
-
   function renderArrival() {
     const template = templateLabels[config.arrivalTemplate] ? config.arrivalTemplate : "a1";
     arrivalPhone.dataset.template = template;
@@ -204,7 +182,7 @@
       button.classList.toggle("active", button.dataset.template === template);
       button.setAttribute("aria-pressed", String(button.dataset.template === template));
     });
-    const templates = { a1: renderA1, a2: renderA2, a3: renderA3, a4: renderA4, a5: renderA5 };
+    const templates = { a1: renderA1, a2: renderA2, a3: renderA3, a4: renderA4 };
     arrivalView.innerHTML = templates[template]();
   }
 

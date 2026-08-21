@@ -258,7 +258,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-home-indicator--dark { background: #161a18; }
 .preview-note { max-width: 520px; margin: 0 auto; color: var(--muted); font-size: 11px; text-align: center; }
 
-.template-switcher { margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.template-switcher { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
 .template-switcher button { height: 30px; border: 1px solid #cdd1cb; border-radius: 8px; color: #5e6862; background: rgba(255,255,255,.68); font-size: 11px; font-weight: 800; cursor: pointer; }
 .template-switcher button.active { border-color: var(--green); color: #fff; background: var(--green); }
 
@@ -279,8 +279,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .arrival-nav--ledger button { color: #16aab0; }
 .arrival-nav--ledger strong { font-size: 21px; font-weight: 700; }
 
-.phone-shell--arrival[data-template="a1"] #bStatusBar,
-.phone-shell--arrival[data-template="a5"] #bStatusBar { color: #fff; background: #171717; }
+.phone-shell--arrival[data-template="a1"] #bStatusBar { color: #fff; background: #171717; }
 .phone-shell--arrival[data-template="a2"] #bStatusBar { color: #fff; background: #242424; }
 .phone-shell--arrival[data-template="a3"] #bStatusBar { color: #101214; background: #f8fbfc; }
 .phone-shell--arrival[data-template="a4"] #bStatusBar { color: #050505; background: #fff; }
@@ -330,11 +329,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .receipt dl div { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 10px; align-items: start; }
 .receipt dt { color: #929292; font-size: 13px; }
 .receipt dd { margin: 0; color: #272727; font-size: 13px; line-height: 1.42; }
-.receipt--a5 { padding-top: 29px; }
-.receipt--a5 .receipt-mark { width: 68px; height: 68px; margin-bottom: 27px; }
-.receipt--a5 .receipt-kicker { font-size: 15px; }
-.receipt--a5 > h3 { margin-top: 20px; font-size: 36px; }
-.receipt--a5 dl { gap: 17px; }
 .breakable { overflow-wrap: anywhere; }
 
 .inbox-screen { height: calc(100% - 54px); padding: 10px 18px 68px; background: #242424; }
