@@ -101,9 +101,10 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-mode { position: relative; flex: none; color: currentColor; line-height: 1; }
 
 .status-bar--iphone { padding-right: 27px; padding-left: 27px; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; }
-.status-bar--iphone .status-time { font-size: 17px; font-weight: 780; letter-spacing: -.045em; }
-.status-bar--iphone .status-right { gap: 7px; }
-.status-bar--iphone .wifi { width: 19px; height: 15px; }
+.status-bar--iphone .status-time { font-size: 16px; font-weight: 700; letter-spacing: -.04em; }
+.status-bar--iphone .status-right { gap: 6px; }
+.status-bar--iphone .signal { width: 19px; height: 15px; }
+.status-bar--iphone .wifi { width: 18px; height: 14px; }
 
 /* Samsung One UI screenshot: time + date + notifications / compact system cluster. */
 .status-bar--samsung { padding-right: 20px; padding-left: 20px; font-family: "SamsungOne", "Segoe UI", sans-serif; }
@@ -168,12 +169,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery-system { display: inline-flex; align-items: center; }
 
 /* Apple assets */
-.battery--iphone { width: 31px; height: 15px; color: #fff; }
-.battery--iphone i { left: 2px; top: 2px; width: var(--battery-fill); max-width: 25px; height: 11px; border-radius: 3px; opacity: .92; }
-.battery--iphone b { position: absolute; z-index: 3; inset: 0 3px 0 0; display: grid; place-items: center; color: #fff; font-size: 8px; letter-spacing: -.04em; mix-blend-mode: difference; }
+.battery--iphone { width: 28px; height: 13px; color: #fff; }
+.battery--iphone i { left: 2px; top: 2px; width: var(--battery-fill); max-width: 23px; height: 9px; border-radius: 3px; opacity: .92; }
+.battery--iphone b { position: absolute; z-index: 3; inset: 0 3px 0 0; display: grid; place-items: center; color: #fff; font-size: 7px; letter-spacing: -.04em; mix-blend-mode: difference; }
 .battery--iphone.battery--charging { color: #52dc78; }
 .battery--iphone.battery--charging b { padding-right: 5px; color: #fff; mix-blend-mode: normal; }
-.battery--iphone .battery-bolt { right: 3px; top: 2px; width: 5px; height: 10px; }
+.battery--iphone .battery-bolt { right: 3px; top: 2px; width: 5px; height: 9px; }
 .battery--iphone.battery--low:not(.battery--charging) b { color: #fff; mix-blend-mode: normal; }
 
 /* Samsung assets */

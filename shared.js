@@ -108,7 +108,7 @@ function statusDate(value) {
 
 function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
-  const innerWidths = { iphone: 25, samsung: 28, xiaomi: 27, pixel: 14, vivo: 30 };
+  const innerWidths = { iphone: 23, samsung: 28, xiaomi: 27, pixel: 14, vivo: 30 };
   const innerWidth = innerWidths[device] || innerWidths.iphone;
   const fillWidth = Math.min(innerWidth, Math.max(1, battery * innerWidth / 100)).toFixed(2);
   const level = `style="--battery-fill:${fillWidth}px"`;
