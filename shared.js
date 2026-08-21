@@ -88,8 +88,10 @@ function statusDate(value) {
 
 function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
-  const iphoneFill = Math.min(25, Math.max(1, battery * .25)).toFixed(2);
-  const level = `style="--battery-level:${battery}%;--battery-fill:${iphoneFill}px"`;
+  const innerWidths = { iphone: 25, samsung: 28, xiaomi: 27, pixel: 14, vivo: 30 };
+  const innerWidth = innerWidths[device] || innerWidths.iphone;
+  const fillWidth = Math.min(innerWidth, Math.max(1, battery * innerWidth / 100)).toFixed(2);
+  const level = `style="--battery-fill:${fillWidth}px"`;
   const shell = `<img class="battery-shell" src="${statusIconPath(device, "battery")}" alt="" aria-hidden="true">`;
   const bolt = charging ? `<img class="battery-bolt" src="${statusIconPath(device, "charging")}" alt="" aria-hidden="true">` : "";
   const percentClass = showPercent ? "battery--with-percent" : "";

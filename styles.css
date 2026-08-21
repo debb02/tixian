@@ -157,7 +157,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 
 .battery, .battery-system { position: relative; flex: none; color: currentColor; }
 .battery { display: block; }
-.battery i { position: absolute; z-index: 1; display: block; width: var(--battery-level); background: currentColor; }
+.battery i { position: absolute; z-index: 1; display: block; width: var(--battery-fill); background: currentColor; }
 .battery-shell { position: absolute; z-index: 2; inset: 0; }
 .battery b, .battery-number { font-weight: 850; line-height: 1; }
 .battery-bolt { position: absolute; z-index: 4; width: 10px; height: 14px; }
