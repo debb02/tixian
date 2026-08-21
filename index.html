@@ -27,15 +27,6 @@
           <div><h2>交易与到账模板</h2><p>A 页数据同步到所选的 A1–A5 到账样式</p></div>
         </div>
         <div class="field-grid">
-          <label class="field field--wide"><span>到账模板</span>
-            <select name="arrivalTemplate">
-              <option value="a1">A1 到账 · 转数快收款</option>
-              <option value="a2">A2 到账 · 收件箱通知</option>
-              <option value="a3">A3 到账 · 交易详情</option>
-              <option value="a4">A4 到账 · 账户流水</option>
-              <option value="a5">A5 到账 · 收款凭条</option>
-            </select>
-          </label>
           <label class="field"><span>币种</span><select name="currency"><option>HK$</option><option>¥</option><option>$</option><option>NT$</option></select></label>
           <label class="field field--wide"><span>金额</span><input name="amount" inputmode="decimal" value="2000.00"></label>
           <label class="field field--wide"><span>汇款账户</span><input name="payoutAccount" value="950***351"></label>
@@ -86,7 +77,16 @@
     </form>
 
     <aside class="preview-panel" id="previews">
-      <div class="preview-heading"><div><span>LIVE PREVIEW</span><h2>A / B 同页双预览</h2></div><p id="activeTemplateLabel">B：A1 到账</p></div>
+      <div class="preview-heading">
+        <div><span>LIVE PREVIEW</span><h2>A / B 同页双预览</h2></div>
+        <div class="template-switcher" id="templateSwitcher" aria-label="切换到账模板">
+          <button type="button" data-template="a1">A1</button>
+          <button type="button" data-template="a2">A2</button>
+          <button type="button" data-template="a3">A3</button>
+          <button type="button" data-template="a4">A4</button>
+          <button type="button" data-template="a5">A5</button>
+        </div>
+      </div>
       <div class="dual-preview-grid">
         <section class="preview-card" aria-label="A 提现预览">
           <div class="phone-stage">
@@ -131,13 +131,6 @@
         </section>
 
         <section class="preview-card" aria-label="B 到账预览">
-          <div class="template-switcher" id="templateSwitcher" aria-label="切换到账模板">
-            <button type="button" data-template="a1">A1</button>
-            <button type="button" data-template="a2">A2</button>
-            <button type="button" data-template="a3">A3</button>
-            <button type="button" data-template="a4">A4</button>
-            <button type="button" data-template="a5">A5</button>
-          </div>
           <div class="phone-stage">
             <div class="phone-shell phone-shell--arrival" id="arrivalPhone">
               <div class="phone-screen phone-screen--light">

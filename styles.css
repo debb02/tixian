@@ -17,6 +17,7 @@
 * { box-sizing: border-box; }
 html { min-height: 100%; overflow-x: hidden; background: var(--paper); }
 body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); }
+body.editor-page { height: 100vh; overflow: hidden; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -38,8 +39,11 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .button--primary:hover { background: var(--green-dark); }
 .button--ghost { background: transparent; }
 
-.workspace { min-height: calc(100vh - 134px); display: grid; grid-template-columns: minmax(390px, .72fr) minmax(700px, 1.28fr); }
-.control-panel { padding: 34px clamp(22px, 4vw, 58px) 64px; background: var(--panel); border-right: 1px solid var(--line); }
+.workspace { height: calc(100vh - 104px); min-height: 0; display: grid; grid-template-columns: minmax(390px, .72fr) minmax(700px, 1.28fr); overflow: hidden; }
+.control-panel { height: 100%; padding: 34px clamp(22px, 4vw, 58px) 64px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #87928b #f1f0ea; scrollbar-gutter: stable; scrollbar-width: thin; background: var(--panel); border-right: 1px solid var(--line); }
+.control-panel::-webkit-scrollbar { width: 8px; }
+.control-panel::-webkit-scrollbar-track { background: #f1f0ea; }
+.control-panel::-webkit-scrollbar-thumb { border: 2px solid #f1f0ea; border-radius: 999px; background: #87928b; }
 .control-section { padding: 0 0 34px; margin: 0 0 34px; border-bottom: 1px solid var(--line); }
 .section-heading { margin-bottom: 24px; display: flex; gap: 14px; align-items: flex-start; }
 .section-heading > span { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #e4eee8; color: var(--green); font-size: 11px; font-weight: 850; }
@@ -69,11 +73,10 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .save-state { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
 .save-state i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(11, 138, 91, .1); }
 
-.preview-panel { padding: 34px 30px 50px; background: #e9e7e1; }
-.preview-heading { max-width: 780px; margin: 0 auto 20px; display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.preview-panel { height: 100%; padding: 34px 30px 50px; overflow-y: auto; overscroll-behavior: contain; background: #e9e7e1; }
+.preview-heading { max-width: 780px; margin: 0 auto 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: 20px; }
 .preview-heading span { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .16em; }
 .preview-heading h2 { margin: 3px 0 0; font-size: 18px; }
-.preview-heading p { margin: 0; color: var(--muted); font-size: 12px; }
 .dual-preview-grid { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .preview-card { min-width: 0; }
 .phone-stage { display: grid; place-items: center; }
@@ -226,7 +229,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-home-indicator--dark { background: #161a18; }
 .preview-note { max-width: 390px; margin: 16px auto 0; color: var(--muted); font-size: 11px; text-align: center; }
 
-.template-switcher { margin: 0 0 10px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.template-switcher { margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
 .template-switcher button { height: 30px; border: 1px solid #cdd1cb; border-radius: 8px; color: #5e6862; background: rgba(255,255,255,.68); font-size: 11px; font-weight: 800; cursor: pointer; }
 .template-switcher button.active { border-color: var(--green); color: #fff; background: var(--green); }
 
@@ -348,12 +351,14 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .ledger-photo b { font-size: 14px; font-weight: 500; }
 
 @media (max-width: 1180px) {
-  .workspace { grid-template-columns: 1fr; }
-  .control-panel { border-right: 0; border-bottom: 1px solid var(--line); }
-  .preview-panel { min-height: 850px; }
+  body.editor-page { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .workspace { height: auto; min-height: calc(100vh - 104px); grid-template-columns: 1fr; overflow: visible; }
+  .control-panel { height: auto; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); }
+  .preview-panel { height: auto; min-height: 850px; overflow: visible; }
 }
 
 @media (max-width: 760px) {
+  .preview-heading { grid-template-columns: 1fr; align-items: start; }
   .dual-preview-grid { grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
   .dual-preview-grid .phone-shell { width: min(390px, 100%); }
 }

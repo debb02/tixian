@@ -198,7 +198,6 @@
   function renderArrival() {
     const template = templateLabels[config.arrivalTemplate] ? config.arrivalTemplate : "a1";
     arrivalPhone.dataset.template = template;
-    document.querySelector("#activeTemplateLabel").textContent = `B：${templateLabels[template]}`;
     templateSwitcher.querySelectorAll("button").forEach((button) => {
       button.classList.toggle("active", button.dataset.template === template);
       button.setAttribute("aria-pressed", String(button.dataset.template === template));
@@ -247,7 +246,6 @@
     const button = event.target.closest("button[data-template]");
     if (!button) return;
     config.arrivalTemplate = button.dataset.template;
-    form.elements.namedItem("arrivalTemplate").value = config.arrivalTemplate;
     render();
     persist();
   });
