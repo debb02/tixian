@@ -126,18 +126,25 @@ function renderStatusBar(root, config) {
   const device = config.device || "iphone";
   const battery = clamp(config.battery, 1, 100);
   const signal = clamp(config.signal, 1, 4);
+  const carrier = config.carrier ? `<span class="carrier">${escapeHtml(config.carrier)}</span>` : "";
+  const wifi = config.wifi ? `<span class="wifi" aria-label="Wi-Fi"><img src="${statusIconPath(device, "wifi")}" alt=""></span>` : "";
+  const signalIcon = `<span class="signal" aria-label="signal" style="--signal-clip:${(4 - signal) * 25}%"><img src="${statusIconPath(device, "signal")}" alt=""></span>`;
+  const batteryIcon = renderBattery(device, battery, config.charging, config.showBatteryPercent);
+  const layouts = {
+    iphone: `${signalIcon}${wifi}${batteryIcon}`,
+    samsung: `<span class="status-mode status-mode--samsung" aria-hidden="true"></span>${carrier}${wifi}${signalIcon}${batteryIcon}`,
+    xiaomi: `<span class="status-mode status-mode--xiaomi" aria-hidden="true">0.0K/s</span>${carrier}${wifi}${signalIcon}${batteryIcon}`,
+    pixel: `${carrier}${wifi}${signalIcon}${batteryIcon}`,
+    vivo: `<span class="status-mode status-mode--vivo" aria-hidden="true">HD</span>${carrier}${signalIcon}${wifi}${batteryIcon}`
+  };
   root.className = `status-bar status-bar--${device}`;
   root.innerHTML = `
     <div class="status-left">
       <span class="status-time">${escapeHtml(config.statusTime || "15:14")}</span>
     </div>
     <div class="status-cutout" aria-hidden="true"><i></i></div>
-    <div class="status-right">
-      <span class="status-mode" aria-hidden="true"></span>
-      <span class="carrier">${escapeHtml(config.carrier ?? "5G")}</span>
-      ${config.wifi ? `<span class="wifi" aria-label="Wi-Fi"><img src="${statusIconPath(device, "wifi")}" alt=""></span>` : ""}
-      <span class="signal" aria-label="signal" style="--signal-clip:${(4 - signal) * 25}%"><img src="${statusIconPath(device, "signal")}" alt=""></span>
-      ${renderBattery(device, battery, config.charging, config.showBatteryPercent)}
+    <div class="status-right status-right--${device}">
+      ${layouts[device] || layouts.iphone}
     </div>`;
 }
 
