@@ -39,6 +39,19 @@ const DEVICE_LABELS = Object.freeze({
   vivo: "vivo"
 });
 
+const STATUS_ICON_FOLDERS = Object.freeze({
+  iphone: "apple",
+  samsung: "samsung",
+  xiaomi: "xiaomi",
+  pixel: "google-pixel",
+  vivo: "vivo"
+});
+
+function statusIconPath(device, name) {
+  const folder = STATUS_ICON_FOLDERS[device] || STATUS_ICON_FOLDERS.iphone;
+  return `assets/status-icons/${folder}/${name}.svg`;
+}
+
 function loadConfig() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
@@ -72,38 +85,39 @@ function clamp(value, min, max) {
 function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
   const level = `style="--battery-level:${battery}%"`;
-  const bolt = charging ? '<em class="battery-bolt" aria-hidden="true">ϟ</em>' : "";
+  const shell = `<img class="battery-shell" src="${statusIconPath(device, "battery")}" alt="" aria-hidden="true">`;
+  const bolt = charging ? `<img class="battery-bolt" src="${statusIconPath(device, "charging")}" alt="" aria-hidden="true">` : "";
   const percentClass = showPercent ? "battery--with-percent" : "";
   const label = `aria-label="${battery}% battery${charging ? ", charging" : ""}"`;
 
   if (device === "samsung") {
     return `<span class="battery-system battery-system--samsung ${state}" ${label}>
       ${showPercent ? `<b class="battery-number">${battery}%</b>` : ""}
-      <span class="battery battery--samsung"><i ${level}></i>${bolt}</span>
+      <span class="battery battery--samsung"><i ${level}></i>${shell}${bolt}</span>
     </span>`;
   }
 
   if (device === "xiaomi") {
     return `<span class="battery battery--xiaomi ${state} ${percentClass}" ${label}>
-      <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}${bolt}
+      <i ${level}></i>${shell}${showPercent ? `<b>${battery}</b>` : ""}${bolt}
     </span>`;
   }
 
   if (device === "pixel") {
     return `<span class="battery-system battery-system--pixel ${state}" ${label}>
       ${showPercent ? `<b class="battery-number">${battery}%</b>` : ""}
-      <span class="battery battery--pixel"><i ${level}></i>${bolt}</span>
+      <span class="battery battery--pixel"><i ${level}></i>${shell}${bolt}</span>
     </span>`;
   }
 
   if (device === "vivo") {
     return `<span class="battery battery--vivo ${state} ${percentClass}" ${label}>
-      <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}<span class="battery-vivo-notch" aria-hidden="true"></span>${bolt}
+      <i ${level}></i>${shell}${showPercent ? `<b>${battery}</b>` : ""}<span class="battery-vivo-notch" aria-hidden="true"></span>${bolt}
     </span>`;
   }
 
   return `<span class="battery battery--iphone ${state} ${percentClass}" ${label}>
-    <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}${bolt}
+    <i ${level}></i>${shell}${showPercent ? `<b>${battery}</b>` : ""}${bolt}
   </span>`;
 }
 
@@ -121,10 +135,8 @@ function renderStatusBar(root, config) {
     <div class="status-right">
       <span class="status-mode" aria-hidden="true"></span>
       <span class="carrier">${escapeHtml(config.carrier ?? "5G")}</span>
-      ${config.wifi ? '<span class="wifi" aria-label="Wi-Fi"><i></i></span>' : ""}
-      <span class="signal" aria-label="signal">
-        ${[1, 2, 3, 4].map(level => `<i class="${level <= signal ? "on" : ""}"></i>`).join("")}
-      </span>
+      ${config.wifi ? `<span class="wifi" aria-label="Wi-Fi"><img src="${statusIconPath(device, "wifi")}" alt=""></span>` : ""}
+      <span class="signal" aria-label="signal" style="--signal-clip:${(4 - signal) * 25}%"><img src="${statusIconPath(device, "signal")}" alt=""></span>
       ${renderBattery(device, battery, config.charging, config.showBatteryPercent)}
     </div>`;
 }
@@ -142,6 +154,7 @@ window.TixianDemo = {
   STORAGE_KEY,
   DEFAULT_CONFIG,
   DEVICE_LABELS,
+  STATUS_ICON_FOLDERS,
   loadConfig,
   saveConfig,
   formatMoney,
