@@ -16,8 +16,9 @@
 
 * { box-sizing: border-box; }
 html { min-height: 100%; overflow-x: hidden; background: var(--paper); }
+html.editor-shell { height: 100%; overflow: hidden; }
 body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); }
-body.editor-page { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+body.editor-page { width: 100%; height: 100%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -41,7 +42,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .button--ghost { background: transparent; }
 
 .workspace { height: auto; min-height: 0; flex: 1 1 auto; display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); overflow: hidden; }
-.control-panel { height: 100%; padding: 34px clamp(22px, 4vw, 58px) 64px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #87928b #f1f0ea; scrollbar-gutter: stable; scrollbar-width: thin; background: var(--panel); border-right: 1px solid var(--line); }
+.control-panel { height: 100%; min-height: 0; padding: 34px clamp(22px, 4vw, 58px) 64px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #87928b #f1f0ea; scrollbar-gutter: stable; scrollbar-width: thin; background: var(--panel); border-right: 1px solid var(--line); }
 .control-panel::-webkit-scrollbar { width: 8px; }
 .control-panel::-webkit-scrollbar-track { background: #f1f0ea; }
 .control-panel::-webkit-scrollbar-thumb { border: 2px solid #f1f0ea; border-radius: 999px; background: #87928b; }
@@ -63,14 +64,15 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .range-field > span { display: flex; justify-content: space-between; }
 .range-field output { color: var(--green); }
 .field-grid--status { margin-top: 15px; }
-.switch-row { min-height: 54px; padding: 10px 13px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border: 1px solid #d2d7d1; border-radius: 10px; cursor: pointer; }
+.switch-row { position: relative; min-height: 54px; padding: 10px 13px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border: 1px solid #d2d7d1; border-radius: 10px; cursor: pointer; }
 .switch-row span { display: grid; gap: 3px; }
 .switch-row small { color: var(--muted); }
-.switch-row input { position: absolute; opacity: 0; }
+.switch-row input { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .switch-row i { width: 42px; height: 24px; padding: 3px; display: block; border-radius: 999px; background: #c8ccc8; transition: background .2s; }
 .switch-row i::after { content: ""; width: 18px; height: 18px; display: block; border-radius: 50%; background: white; box-shadow: 0 1px 4px #999; transition: transform .2s; }
 .switch-row input:checked + i { background: var(--green); }
 .switch-row input:checked + i::after { transform: translateX(18px); }
+.switch-row input:focus-visible + i { outline: 2px solid var(--green); outline-offset: 3px; }
 .save-state { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
 .save-state i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(11, 138, 91, .1); }
 
@@ -357,6 +359,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .ledger-photo b { font-size: 14px; font-weight: 500; }
 
 @media (max-width: 760px) {
+  html.editor-shell { height: auto; overflow-x: hidden; overflow-y: auto; }
   body.editor-page { height: auto; overflow-x: hidden; overflow-y: auto; display: block; }
   .workspace { height: auto; min-height: calc(100vh - 104px); grid-template-columns: 1fr; overflow: visible; }
   .control-panel { height: auto; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); }
