@@ -96,15 +96,13 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-time, .status-date, .network-label { display: block; line-height: 1; }
 .status-notifications { display: block; flex: none; object-fit: contain; }
 .status-mode { position: relative; flex: none; color: currentColor; line-height: 1; }
-.status-cutout { display: none; position: absolute; z-index: 3; left: 50%; top: 18px; transform: translateX(-50%); border-radius: 50%; background: #030405; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.22); }
-.status-cutout i { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; transform: translate(-50%, -50%); border-radius: 50%; background: #132436; box-shadow: inset 0 0 1px #567aa1; }
 
 .status-bar--iphone { padding-right: 27px; padding-left: 27px; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; }
 .status-bar--iphone .status-time { font-size: 17px; font-weight: 780; letter-spacing: -.045em; }
 .status-bar--iphone .status-right { gap: 7px; }
 .status-bar--iphone .wifi { width: 19px; height: 15px; }
 
-/* Samsung One UI: time + date + notifications / centred round camera / compact system cluster. */
+/* Samsung One UI screenshot: time + date + notifications / compact system cluster. */
 .status-bar--samsung { padding-right: 20px; padding-left: 20px; font-family: "SamsungOne", "Segoe UI", sans-serif; }
 .status-bar--samsung .status-left { gap: 6px; }
 .status-bar--samsung .status-time { font-size: 14px; font-weight: 700; letter-spacing: -.035em; }
@@ -112,18 +110,14 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--samsung .status-notifications { width: 30px; height: 10px; }
 .status-bar--samsung .status-right { gap: 4px; }
 .status-bar--samsung .network-label { max-width: 18px; overflow: hidden; font-size: 6px; font-weight: 800; letter-spacing: -.08em; text-transform: uppercase; }
-.status-bar--samsung .status-cutout { display: block; top: 16px; width: 15px; height: 15px; }
-.status-bar--samsung .status-cutout i { width: 4px; height: 4px; }
 
-/* Xiaomi HyperOS/MIUI: notifications beside time / short pill camera / dense dual-SIM cluster. */
+/* Xiaomi HyperOS/MIUI screenshot: notifications beside time / dense dual-SIM cluster. */
 .status-bar--xiaomi { padding-right: 20px; padding-left: 20px; font-family: "MiSans", "Segoe UI", sans-serif; }
 .status-bar--xiaomi .status-left { gap: 6px; }
 .status-bar--xiaomi .status-time { font-size: 15px; font-weight: 720; letter-spacing: -.04em; }
 .status-bar--xiaomi .status-notifications { width: 30px; height: 12px; }
 .status-bar--xiaomi .status-right { gap: 3px; }
 .status-bar--xiaomi .network-label { max-width: 15px; overflow: hidden; font-size: 6px; font-weight: 800; letter-spacing: -.08em; text-transform: uppercase; }
-.status-bar--xiaomi .status-cutout { display: block; top: 18px; width: 29px; height: 12px; border-radius: 999px; }
-.status-bar--xiaomi .status-cutout i { left: 70%; }
 .status-mode--xiaomi { width: 10px; font-size: 6px; font-weight: 850; letter-spacing: -.1em; text-align: center; }
 
 /* Google Pixel: intentionally sparse, with Android's geometric status glyphs. */
@@ -131,16 +125,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--pixel .status-time { font-size: 15px; font-weight: 650; letter-spacing: -.035em; }
 .status-bar--pixel .status-right { gap: 6px; }
 .status-bar--pixel .network-label { max-width: 18px; overflow: hidden; font-size: 7px; font-weight: 700; text-transform: uppercase; }
-.status-bar--pixel .status-cutout { display: block; top: 17px; width: 12px; height: 12px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.28); }
-.status-bar--pixel .status-cutout i { width: 4px; height: 4px; }
 
 /* vivo OriginOS: small typography and a very tight network/battery cluster. */
 .status-bar--vivo { padding-right: 18px; padding-left: 20px; font-family: "vivo Sans", "Segoe UI", sans-serif; }
 .status-bar--vivo .status-time { font-size: 14px; font-weight: 650; letter-spacing: -.035em; }
 .status-bar--vivo .status-right { gap: 2px; }
 .status-bar--vivo .network-label { max-width: 15px; overflow: hidden; font-size: 5px; font-weight: 850; letter-spacing: -.08em; text-transform: uppercase; }
-.status-bar--vivo .status-cutout { display: block; top: 16px; width: 15px; height: 15px; }
-.status-bar--vivo .status-cutout i { width: 4px; height: 4px; }
 .status-mode--vivo { width: 14px; font-size: 5px; font-weight: 850; letter-spacing: -.1em; text-align: center; }
 .signal, .wifi { display: block; flex: none; overflow: hidden; }
 .signal { width: 20px; height: 16px; clip-path: inset(0 var(--signal-clip) 0 0); }

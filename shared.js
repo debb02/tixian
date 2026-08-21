@@ -153,7 +153,6 @@ function renderStatusBar(root, config) {
     <div class="status-left status-left--${device}">
       ${leftLayouts[device] || leftLayouts.iphone}
     </div>
-    <div class="status-cutout" aria-hidden="true"><i></i></div>
     <div class="status-right status-right--${device}">
       ${rightLayouts[device] || rightLayouts.iphone}
     </div>`;
