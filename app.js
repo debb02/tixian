@@ -15,6 +15,9 @@
   const arrivalView = document.querySelector("#arrivalView");
   const arrivalPhone = document.querySelector("#arrivalPhone");
   const templateSwitcher = document.querySelector("#templateSwitcher");
+  const phoneFrames = Array.from(document.querySelectorAll(".phone-scale-frame"));
+  const PHONE_WIDTH = 390;
+  const PHONE_HEIGHT = 844;
   const templateLabels = {
     a1: "A1 到账 · 转数快收款",
     a2: "A2 到账 · 收件箱通知",
@@ -30,6 +33,32 @@
     config = { ...config, ...generateIdentifiers(config.withdrawalTime) };
   }
   let saveTimer;
+  let fitFrame;
+  let phoneResizeObserver;
+
+  function fitPhonePreviews() {
+    const mobileLayout = window.matchMedia("(max-width: 760px)").matches;
+    phoneFrames.forEach((frame) => {
+      const stage = frame.parentElement;
+      const widthScale = stage.clientWidth / PHONE_WIDTH;
+      const heightScale = mobileLayout ? 1 : stage.clientHeight / PHONE_HEIGHT;
+      const scale = Math.min(1, widthScale, heightScale);
+      frame.style.setProperty("--phone-scale", scale.toFixed(5));
+      frame.style.setProperty("--phone-frame-width", `${(PHONE_WIDTH * scale).toFixed(2)}px`);
+      frame.style.setProperty("--phone-frame-height", `${(PHONE_HEIGHT * scale).toFixed(2)}px`);
+    });
+  }
+
+  function schedulePhoneFit() {
+    cancelAnimationFrame(fitFrame);
+    fitFrame = requestAnimationFrame(fitPhonePreviews);
+  }
+
+  if ("ResizeObserver" in window) {
+    phoneResizeObserver = new ResizeObserver(schedulePhoneFit);
+    phoneFrames.forEach((frame) => phoneResizeObserver.observe(frame.parentElement));
+  }
+  window.addEventListener("resize", schedulePhoneFit);
 
   const value = (key) => escapeHtml(config[key]);
   const icon = (name, label = "") => `<img src="assets/icons/${name}.svg" alt="${escapeHtml(label)}">`;
@@ -263,4 +292,5 @@
   populate();
   render();
   saveConfig(config);
+  schedulePhoneFit();
 })();

@@ -86,8 +86,8 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .dual-preview-grid { width: 100%; height: 100%; min-height: 0; max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .preview-card { min-width: 0; height: 100%; min-height: 0; }
 .phone-stage { height: 100%; min-height: 0; display: grid; place-items: center; }
-.dual-preview-grid .phone-shell { width: min(350px, 100%, calc(46.2cqh - 58px)); }
-.phone-shell { width: min(390px, 100%); aspect-ratio: 390 / 844; padding: 0; border-radius: 0; background: transparent; box-shadow: none; container-type: inline-size; }
+.phone-scale-frame { width: var(--phone-frame-width, 390px); height: var(--phone-frame-height, 844px); flex: none; }
+.phone-shell { width: 390px; height: 844px; padding: 0; border-radius: 0; background: transparent; box-shadow: none; transform: scale(var(--phone-scale, 1)); transform-origin: top left; container-type: inline-size; }
 .phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 0; }
 .phone-screen--dark { color: #f5f5fb; background: #030408; }
 .phone-screen--light { color: #171b19; background: #f7f7f5; }
@@ -266,7 +266,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .template-switcher button { height: 30px; border: 1px solid #cdd1cb; border-radius: 8px; color: #5e6862; background: rgba(255,255,255,.68); font-size: 11px; font-weight: 800; cursor: pointer; }
 .template-switcher button.active { border-color: var(--green); color: #fff; background: var(--green); }
 
-.phone-shell--arrival { width: min(410px, calc(100vw - 32px)); aspect-ratio: 390 / 844; background: #111514; }
+.phone-shell--arrival { background: #111514; }
 .arrival-view { height: calc(100% - 54px); overflow: hidden; background: #fff; }
 .arrival-view img { display: block; }
 .arrival-nav img { width: 100%; height: 100%; }
@@ -387,7 +387,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   .preview-heading { margin-bottom: 20px; grid-template-columns: 1fr; align-items: start; }
   .dual-preview-grid { height: auto; grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
   .preview-card, .phone-stage { height: auto; }
-  .dual-preview-grid .phone-shell { width: min(390px, 100%); }
   .page-footer { flex-wrap: wrap; gap: 5px 10px; }
 }
 
@@ -402,7 +401,6 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   .identifier-actions { align-items: flex-start; flex-direction: column; }
   .preview-panel { padding: 28px 10px 42px; min-height: 760px; }
   .preview-heading { padding: 0 8px; }
-  .phone-shell { width: min(370px, calc(100vw - 20px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
