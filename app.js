@@ -70,11 +70,12 @@
     }
     next.battery = Number(next.battery);
     next.signal = Number(next.signal);
+    delete next.arrivalTime;
     return next;
   }
 
   function renderA1() {
-    const arrival = getDateParts(config.arrivalTime);
+    const arrival = getDateParts(config.withdrawalTime);
     return `
       <div class="arrival-nav arrival-nav--dark">
         <button type="button" aria-label="关闭">${icon("x")}</button>
@@ -96,7 +97,7 @@
   }
 
   function renderA2() {
-    const arrival = getDateParts(config.arrivalTime);
+    const arrival = getDateParts(config.withdrawalTime);
     return `
       <div class="arrival-nav arrival-nav--inbox">
         <button type="button" aria-label="返回">${icon("arrow-left")}</button>
@@ -118,7 +119,7 @@
   }
 
   function renderA3() {
-    const arrival = getDateParts(config.arrivalTime);
+    const arrival = getDateParts(config.withdrawalTime);
     const nameParts = (config.recipientName || "WY").trim().split(/\s+/);
     const initials = `${nameParts[0]?.[0] || "W"}${nameParts.at(-1)?.[0] || "Y"}`;
     return `
@@ -145,7 +146,7 @@
   }
 
   function renderA4() {
-    const arrival = getDateParts(config.arrivalTime);
+    const arrival = getDateParts(config.withdrawalTime);
     return `
       <div class="arrival-nav arrival-nav--ledger">
         <button type="button" aria-label="返回">${icon("arrow-left")}</button>
@@ -173,7 +174,7 @@
   }
 
   function renderA5() {
-    const arrival = getDateParts(config.arrivalTime);
+    const arrival = getDateParts(config.withdrawalTime);
     return `
       <div class="arrival-nav arrival-nav--dark">
         <button type="button" aria-label="关闭">${icon("x")}</button>

@@ -9,7 +9,6 @@ const DEFAULT_CONFIG = Object.freeze({
   transactionType: "提款",
   transactionStatus: "成功",
   withdrawalTime: "2026-08-17T15:10:45",
-  arrivalTime: "2026-08-17T15:10:45",
   transactionId: "1040073000012801202405195540487215",
   fpsReference: "FRN20241010PAYC694364383164",
   arrivalMessage: "轉數快收款",
