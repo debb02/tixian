@@ -128,6 +128,12 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .battery--iphone { width: 30px; height: 15px; border: 1.4px solid currentColor; border-radius: 4px; color: #fff; background: transparent; }
 .battery--iphone::after { content: ""; position: absolute; right: -4px; top: 4px; width: 2.5px; height: 5px; border-radius: 0 2px 2px 0; background: currentColor; opacity: .78; }
 .battery--iphone i { left: 2px; top: 2px; width: max(1px, calc(var(--battery-level) - 4px)); max-width: calc(100% - 4px); height: 9px; border-radius: 2px; background: currentColor; opacity: .92; }
+.battery--iphone b { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; color: #171a2b; font-size: 8px; letter-spacing: -.06em; }
+.battery--iphone.battery--with-percent i { width: calc(100% - 4px); }
+.battery--iphone.battery--charging { color: #52dc78; border-color: #52dc78; background: #52dc78; }
+.battery--iphone.battery--charging i { opacity: 1; }
+.battery--iphone .battery-bolt { right: -10px; top: -1px; color: #fff; font-size: 13px; font-weight: 900; }
+.battery--iphone.battery--low:not(.battery--charging) b { color: #fff; }
 
 /* Samsung One UI: percentage sits beside a compact outlined battery. */
 .battery-system { display: inline-flex; align-items: center; }
@@ -234,8 +240,11 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .phone-shell--arrival[data-template="a4"] #bStatusBar { color: #050505; background: #fff; }
 .phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone,
 .phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone { color: #111; }
+.phone-shell--arrival[data-template="a3"] #bStatusBar .battery--iphone.battery--charging,
+.phone-shell--arrival[data-template="a4"] #bStatusBar .battery--iphone.battery--charging { color: #52dc78; }
 .battery--iphone.battery--low { color: #ff5b65; }
-.preview-card #bStatusBar .battery b { color: currentColor; mix-blend-mode: normal; }
+.preview-card #bStatusBar .battery--iphone b { color: #171a2b; }
+.preview-card #bStatusBar .battery--iphone.battery--low:not(.battery--charging) b { color: #fff; }
 
 .demo-stamp { position: absolute; z-index: 30; left: 10px; bottom: 10px; padding: 4px 7px; border: 1px solid rgba(150,25,44,.32); border-radius: 4px; color: rgba(150,25,44,.72); background: rgba(255,255,255,.84); font-size: 8px; font-weight: 900; letter-spacing: .08em; pointer-events: none; }
 .receipt { height: calc(100% - 54px); padding: 36px 28px 70px; overflow: hidden; color: #171717; background: #fff; text-align: center; }

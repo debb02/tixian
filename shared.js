@@ -24,6 +24,7 @@ const DEFAULT_CONFIG = Object.freeze({
   device: "iphone",
   statusTime: "09:55",
   battery: 40,
+  showBatteryPercent: false,
   charging: true,
   signal: 4,
   wifi: true,
@@ -68,39 +69,42 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, Number(value) || 0));
 }
 
-function renderBattery(device, battery, charging) {
+function renderBattery(device, battery, charging, showPercent) {
   const state = `${battery <= 20 ? "battery--low" : ""} ${charging ? "battery--charging" : ""}`.trim();
   const level = `style="--battery-level:${battery}%"`;
   const bolt = charging ? '<em class="battery-bolt" aria-hidden="true">ϟ</em>' : "";
+  const percentClass = showPercent ? "battery--with-percent" : "";
   const label = `aria-label="${battery}% battery${charging ? ", charging" : ""}"`;
 
   if (device === "samsung") {
     return `<span class="battery-system battery-system--samsung ${state}" ${label}>
-      <b class="battery-number">${battery}%</b>
+      ${showPercent ? `<b class="battery-number">${battery}%</b>` : ""}
       <span class="battery battery--samsung"><i ${level}></i>${bolt}</span>
     </span>`;
   }
 
   if (device === "xiaomi") {
-    return `<span class="battery battery--xiaomi ${state}" ${label}>
-      <i ${level}></i><b>${battery}</b>${bolt}
+    return `<span class="battery battery--xiaomi ${state} ${percentClass}" ${label}>
+      <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}${bolt}
     </span>`;
   }
 
   if (device === "pixel") {
     return `<span class="battery-system battery-system--pixel ${state}" ${label}>
-      <b class="battery-number">${battery}%</b>
+      ${showPercent ? `<b class="battery-number">${battery}%</b>` : ""}
       <span class="battery battery--pixel"><i ${level}></i>${bolt}</span>
     </span>`;
   }
 
   if (device === "vivo") {
-    return `<span class="battery battery--vivo ${state}" ${label}>
-      <i ${level}></i><b>${battery}</b><span class="battery-vivo-notch" aria-hidden="true"></span>${bolt}
+    return `<span class="battery battery--vivo ${state} ${percentClass}" ${label}>
+      <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}<span class="battery-vivo-notch" aria-hidden="true"></span>${bolt}
     </span>`;
   }
 
-  return `<span class="battery battery--iphone ${state}" ${label}><i ${level}></i></span>`;
+  return `<span class="battery battery--iphone ${state} ${percentClass}" ${label}>
+    <i ${level}></i>${showPercent ? `<b>${battery}</b>` : ""}${bolt}
+  </span>`;
 }
 
 function renderStatusBar(root, config) {
@@ -121,7 +125,7 @@ function renderStatusBar(root, config) {
       <span class="signal" aria-label="signal">
         ${[1, 2, 3, 4].map(level => `<i class="${level <= signal ? "on" : ""}"></i>`).join("")}
       </span>
-      ${renderBattery(device, battery, config.charging)}
+      ${renderBattery(device, battery, config.charging, config.showBatteryPercent)}
     </div>`;
 }
 
