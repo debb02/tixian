@@ -39,7 +39,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .button--primary:hover { background: var(--green-dark); }
 .button--ghost { background: transparent; }
 
-.workspace { height: calc(100vh - 104px); min-height: 0; display: grid; grid-template-columns: minmax(390px, .72fr) minmax(700px, 1.28fr); overflow: hidden; }
+.workspace { height: calc(100vh - 104px); min-height: 0; display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); overflow: hidden; }
 .control-panel { height: 100%; padding: 34px clamp(22px, 4vw, 58px) 64px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #87928b #f1f0ea; scrollbar-gutter: stable; scrollbar-width: thin; background: var(--panel); border-right: 1px solid var(--line); }
 .control-panel::-webkit-scrollbar { width: 8px; }
 .control-panel::-webkit-scrollbar-track { background: #f1f0ea; }
@@ -125,6 +125,11 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .status-bar--pixel .wifi { width: 19px; height: 14px; }
 .status-bar--vivo .signal { width: 20px; height: 14px; }
 .status-bar--vivo .wifi { width: 20px; height: 15px; }
+
+@container (max-width: 300px) {
+  .status-bar { padding-right: 16px; padding-left: 16px; }
+  .status-left, .status-right { min-width: 0; }
+}
 
 .battery, .battery-system { position: relative; flex: none; color: currentColor; }
 .battery { display: block; }
@@ -350,14 +355,11 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
 .ledger-photo img { width: 28px; height: 28px; filter: invert(62%) sepia(58%) saturate(638%) hue-rotate(134deg); }
 .ledger-photo b { font-size: 14px; font-weight: 500; }
 
-@media (max-width: 1180px) {
+@media (max-width: 760px) {
   body.editor-page { height: auto; overflow-x: hidden; overflow-y: auto; }
   .workspace { height: auto; min-height: calc(100vh - 104px); grid-template-columns: 1fr; overflow: visible; }
   .control-panel { height: auto; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); }
   .preview-panel { height: auto; min-height: 850px; overflow: visible; }
-}
-
-@media (max-width: 760px) {
   .preview-heading { grid-template-columns: 1fr; align-items: start; }
   .dual-preview-grid { grid-template-columns: 1fr; max-width: 390px; gap: 32px; }
   .dual-preview-grid .phone-shell { width: min(390px, 100%); }

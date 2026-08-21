@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>提现与到账 · 双页面配置台</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260821-2">
 </head>
 <body class="editor-page">
   <header class="topbar">
@@ -21,6 +21,7 @@
 
   <main class="workspace">
     <form class="control-panel" id="configForm" autocomplete="off">
+      <input type="hidden" name="arrivalTemplate" value="a1">
       <section class="control-section">
         <div class="section-heading">
           <span>01</span>
@@ -79,6 +80,7 @@
     <aside class="preview-panel" id="previews">
       <div class="preview-heading">
         <div><span>LIVE PREVIEW</span><h2>A / B 同页双预览</h2></div>
+        <p id="activeTemplateLabel" hidden>B：A1 到账</p>
         <div class="template-switcher" id="templateSwitcher" aria-label="切换到账模板">
           <button type="button" data-template="a1">A1</button>
           <button type="button" data-template="a2">A2</button>
@@ -147,7 +149,7 @@
     </aside>
   </main>
 
-  <script src="shared.js"></script>
-  <script src="app.js"></script>
+  <script src="shared.js?v=20260821-2"></script>
+  <script src="app.js?v=20260821-2"></script>
 </body>
 </html>
