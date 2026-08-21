@@ -3,6 +3,7 @@
     DEFAULT_CONFIG,
     loadConfig,
     saveConfig,
+    generateIdentifiers,
     formatMoney,
     formatDateTime,
     renderStatusBar,
@@ -23,6 +24,11 @@
 
   let config = loadConfig();
   if (!templateLabels[config.arrivalTemplate]) config.arrivalTemplate = "a1";
+  const usesLegacyIdentifiers = config.transactionId === DEFAULT_CONFIG.transactionId
+    && config.fpsReference === DEFAULT_CONFIG.fpsReference;
+  if (!config.transactionId || !config.fpsReference || usesLegacyIdentifiers) {
+    config = { ...config, ...generateIdentifiers(config.withdrawalTime) };
+  }
   let saveTimer;
 
   const value = (key) => escapeHtml(config[key]);
@@ -233,11 +239,19 @@
   });
 
   document.querySelector("#resetButton").addEventListener("click", () => {
-    config = { ...DEFAULT_CONFIG };
+    config = { ...DEFAULT_CONFIG, ...generateIdentifiers(DEFAULT_CONFIG.withdrawalTime) };
     populate();
     render();
     saveConfig(config);
     saveState.textContent = "已恢复默认设置";
+  });
+
+  document.querySelector("#generateIdentifiersButton").addEventListener("click", () => {
+    config = { ...readForm(), ...generateIdentifiers(form.elements.namedItem("withdrawalTime").value) };
+    populate();
+    render();
+    saveConfig(config);
+    saveState.textContent = "已生成并保存新编号";
   });
 
   document.querySelector("#focusPreviewButton").addEventListener("click", () => {

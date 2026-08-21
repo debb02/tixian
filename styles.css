@@ -60,6 +60,9 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   outline: none; color: var(--ink); background: #fff; transition: border .18s, box-shadow .18s;
 }
 .field input:focus, .field select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(11, 138, 91, .12); }
+.identifier-actions { margin-top: -4px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.identifier-actions small { color: var(--muted); font-size: 11px; line-height: 1.35; }
+.button--compact { min-height: 34px; padding: 0 12px; border-radius: 9px; flex: none; font-size: 12px; }
 .field input[type="range"] { height: 26px; padding: 0; accent-color: var(--green); border: 0; box-shadow: none; }
 .range-field > span { display: flex; justify-content: space-between; }
 .range-field output { color: var(--green); }
@@ -395,6 +398,7 @@ h1 { margin: 0; font: 750 clamp(25px, 3vw, 36px)/1.05 Georgia, "Noto Serif TC", 
   .control-panel { padding: 28px 16px 45px; }
   .field-grid { grid-template-columns: 1fr; }
   .field--wide { grid-column: auto; }
+  .identifier-actions { align-items: flex-start; flex-direction: column; }
   .preview-panel { padding: 28px 10px 42px; min-height: 760px; }
   .preview-heading { padding: 0 8px; }
   .phone-shell { width: min(370px, calc(100vw - 20px)); }

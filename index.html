@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>提现与到账 · 双页面配置台</title>
-  <link rel="stylesheet" href="styles.css?v=20260821-10">
+  <link rel="stylesheet" href="styles.css?v=20260821-11">
 </head>
 <body class="editor-page">
   <header class="topbar">
@@ -35,8 +35,12 @@
           <label class="field"><span>交易类型</span><input name="transactionType" value="提现"></label>
           <label class="field"><span>交易状态</span><select name="transactionStatus"><option>成功</option><option>处理中</option><option>失败</option></select></label>
           <label class="field field--wide"><span>交易时间（A/B 同步）</span><input name="withdrawalTime" type="datetime-local" step="1"></label>
-          <label class="field field--wide"><span>交易编号</span><input name="transactionId"></label>
-          <label class="field field--wide"><span>FPS 参考编号</span><input name="fpsReference"></label>
+          <label class="field field--wide"><span>交易编号</span><input name="transactionId" inputmode="numeric" maxlength="34" pattern="[0-9]{34}" aria-describedby="identifierHelp"></label>
+          <label class="field field--wide"><span>FPS 参考编号</span><input name="fpsReference" maxlength="27" pattern="FRN[0-9]{8}PAYC[0-9]{12}" autocapitalize="characters" spellcheck="false" aria-describedby="identifierHelp"></label>
+          <div class="identifier-actions field--wide">
+            <small id="identifierHelp">按交易日期生成固定格式，生成后仍可手动修改</small>
+            <button class="button button--compact" id="generateIdentifiersButton" type="button">生成新编号</button>
+          </div>
           <label class="field field--wide"><span>B 页到账文案</span><input name="arrivalMessage"></label>
           <label class="field field--wide"><span>B 页账户状态</span><input name="balanceLabel"></label>
           <label class="field field--wide"><span>机构 / 银行名称</span><input name="institutionName"></label>
@@ -150,7 +154,7 @@
     <span>A2–A4 仅参考文档截图的版式结构，预览不代表真实银行或支付产品。</span>
   </footer>
 
-  <script src="shared.js?v=20260821-10"></script>
-  <script src="app.js?v=20260821-10"></script>
+  <script src="shared.js?v=20260821-11"></script>
+  <script src="app.js?v=20260821-11"></script>
 </body>
 </html>

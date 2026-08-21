@@ -64,6 +64,26 @@ function saveConfig(config) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...DEFAULT_CONFIG, ...config }));
 }
 
+function identifierDate(value) {
+  const match = String(value || "").match(/(\d{4})-(\d{2})-(\d{2})/);
+  return match ? `${match[1]}${match[2]}${match[3]}` : "20260817";
+}
+
+function randomDigits(length) {
+  const values = new Uint8Array(length);
+  if (globalThis.crypto?.getRandomValues) globalThis.crypto.getRandomValues(values);
+  else for (let index = 0; index < length; index += 1) values[index] = Math.floor(Math.random() * 256);
+  return Array.from(values, (value) => value % 10).join("");
+}
+
+function generateIdentifiers(withdrawalTime) {
+  const date = identifierDate(withdrawalTime);
+  return {
+    transactionId: `1040073${date}${randomDigits(19)}`,
+    fpsReference: `FRN${date}PAYC${randomDigits(12)}`
+  };
+}
+
 function formatMoney(value) {
   const amount = Number(String(value).replace(/,/g, ""));
   return Number.isFinite(amount)
@@ -176,6 +196,7 @@ window.TixianDemo = {
   STATUS_ICON_FOLDERS,
   loadConfig,
   saveConfig,
+  generateIdentifiers,
   formatMoney,
   formatDateTime,
   renderStatusBar,
